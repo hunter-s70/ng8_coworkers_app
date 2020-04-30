@@ -6,11 +6,12 @@ import { NotFoundComponent } from '../pages/not-found/not-found.component';
 import { SignInComponent } from '../pages/sign-in/sign-in.component';
 
 import { AuthGuard } from '../guards/auth.guard';
+import { SecureInnerPagesGuard } from '../guards/secure-inner-pages.guard';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/sign-in', pathMatch: 'full'},
-  { path: 'sign-in', component: SignInComponent},
+  { path: '', redirectTo: '/home', pathMatch: 'full'},
+  { path: 'sign-in', component: SignInComponent, canActivate: [SecureInnerPagesGuard]},
   { path: 'home', component: DashboardComponent, canActivate: [AuthGuard]},
   { path: '**', component: NotFoundComponent }
 ];
