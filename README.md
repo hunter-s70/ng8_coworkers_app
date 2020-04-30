@@ -8,7 +8,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Development server with hidden environments (`/environments/environment.local.ts` is required)
 
-Run `ng serve --configuration=local` || `ng serve -c local`
+Run `ng serve --configuration=local` || `ng serve -c local --open`
 
 ## Code scaffolding
 

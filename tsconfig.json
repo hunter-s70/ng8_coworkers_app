@@ -5,6 +5,7 @@
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
+    "skipLibCheck": true, // have errors in *.ts in node_modules/@angular/file/angularfire2
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "module": "esnext",
