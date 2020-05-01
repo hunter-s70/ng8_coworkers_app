@@ -17,6 +17,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { AddEmployeeComponent } from './pages/add-employee/add-employee.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SignInComponent } from './pages/sign-in/sign-in.component';
     FooterComponent,
     DashboardComponent,
     NotFoundComponent,
-    SignInComponent
+    SignInComponent,
+    AddEmployeeComponent
   ],
   imports: [
     BrowserModule,
