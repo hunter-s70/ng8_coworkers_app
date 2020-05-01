@@ -1,3 +1,11 @@
 <header class="header">
-  <div class="header__logo"></div>
+  <a routerLink="/home" class="header__logo"></a>
+  <div class="header__content">
+    <a *ngIf="!authService.isLoggedIn"
+            mat-button
+            routerLink="/sign-in">Login</a>
+    <button *ngIf="authService.isLoggedIn"
+            mat-button
+            (click)="authService.SignOut()">Logout</button>
+  </div>
 </header>
