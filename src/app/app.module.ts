@@ -1,11 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+// separate modules
 import { AppRoutingModule } from './routing/app-routing.module';
 import { AppFirebaseModule } from './modules/firebase/app-firebase.module';
-import { AuthService } from './services/auth.service';
-import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { AppMaterialModule } from './modules/material/app-material.module';
+
+// services
+import { AuthService } from './services/auth.service';
+
+// components
+import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -25,7 +31,8 @@ import { SignInComponent } from './pages/sign-in/sign-in.component';
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    AppFirebaseModule
+    AppFirebaseModule,
+    AppMaterialModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
