@@ -18,6 +18,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { AddEmployeeComponent } from './pages/add-employee/add-employee.component';
+import { AddEmployeeFormComponent } from './components/add-employee-form/add-employee-form.component';
 
 @NgModule({
   declarations: [
@@ -27,14 +28,15 @@ import { AddEmployeeComponent } from './pages/add-employee/add-employee.componen
     DashboardComponent,
     NotFoundComponent,
     SignInComponent,
-    AddEmployeeComponent
+    AddEmployeeComponent,
+    AddEmployeeFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
     AppFirebaseModule,
-    AppMaterialModule
+    AppMaterialModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
