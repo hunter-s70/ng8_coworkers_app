@@ -6,6 +6,7 @@ import { AppRoutingModule } from './routing/app-routing.module';
 import { AppFirebaseModule } from './modules/firebase/app-firebase.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './modules/material/app-material.module';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 // services
 import { AuthService } from './services/auth.service';
@@ -37,6 +38,7 @@ import { AddEmployeeFormComponent } from './components/add-employee-form/add-emp
     NoopAnimationsModule,
     AppFirebaseModule,
     AppMaterialModule,
+    MatMomentDateModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

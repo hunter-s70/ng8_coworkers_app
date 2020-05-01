@@ -7,6 +7,18 @@
     <input matInput placeholder="Last name" required>
   </mat-form-field>
 
+  <mat-form-field class="employee-form__field employee-form__field--half-width">
+    <input matInput [matDatepicker]="birthday" placeholder="Birthday" required>
+    <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
+    <mat-datepicker #birthday></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field class="employee-form__field employee-form__field--half-width">
+    <input matInput [matDatepicker]="firstday" placeholder="First working day" required>
+    <mat-datepicker-toggle matSuffix [for]="firstday"></mat-datepicker-toggle>
+    <mat-datepicker #firstday></mat-datepicker>
+  </mat-form-field>
+
   <mat-form-field class="employee-form__field">
     <textarea matInput placeholder="Description"></textarea>
   </mat-form-field>
