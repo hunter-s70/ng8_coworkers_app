@@ -5,21 +5,23 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+
+const modulesList = [
+  MatButtonModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatDatepickerModule,
+  MatSelectModule,
+  MatIconModule,
+  MatChipsModule,
+  MatAutocompleteModule,
+];
 
 @NgModule({
-  imports: [
-    MatButtonModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatSelectModule
-  ],
-  exports: [
-    MatButtonModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatSelectModule
-  ]
+  imports: modulesList,
+  exports: modulesList,
 })
 export class AppMaterialModule { }

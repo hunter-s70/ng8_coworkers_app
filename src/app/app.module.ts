@@ -8,6 +8,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './modules/material/app-material.module';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // services
 import { AuthService } from './services/auth.service';
@@ -40,7 +41,8 @@ import { AddEmployeeFormComponent } from './components/add-employee-form/add-emp
     AppFirebaseModule,
     AppMaterialModule,
     MatMomentDateModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

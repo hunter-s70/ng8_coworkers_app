@@ -44,13 +44,48 @@
               placeholder="Bio"></textarea>
   </mat-form-field>
 
-  <mat-form-field class="employee-form__field">
+  <mat-form-field class="employee-form__field employee-form__field--half-width">
     <mat-label>Position</mat-label>
     <mat-select [(ngModel)]="employee.positionId" name="position">
       <mat-option *ngFor="let position of positions" [value]="position.id">
-        {{position.value}}
+        {{ position.value }}
       </mat-option>
     </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="employee-form__field employee-form__field--half-width">
+    <input [(ngModel)]="employee.email"
+           matInput
+           name="email"
+           placeholder="Email"
+           required>
+  </mat-form-field>
+
+  <mat-form-field class="employee-form__field">
+    <mat-chip-list #chipList aria-label="Skills">
+      <mat-chip
+        *ngFor="let skill of selectedSkills"
+        [selectable]="selectable"
+        [removable]="removable"
+        (removed)="remove(skill)">
+        {{ skill }}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input
+        placeholder="Add skill..."
+        #skillInput
+        [formControl]="skillCtrl"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+      <mat-option *ngFor="let skill of filteredSkills | async" [value]="skill">
+        {{ skill }}
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
 
   <div class="employee-form__btn-cont">
