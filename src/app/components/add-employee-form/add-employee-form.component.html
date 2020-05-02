@@ -1,30 +1,52 @@
 <form class="employee-form">
   <mat-form-field class="employee-form__field employee-form__field--half-width">
-    <input matInput placeholder="First name" required>
+    <input [(ngModel)]="employee.firstName"
+           matInput
+           name="firstName"
+           placeholder="First name"
+           required>
   </mat-form-field>
 
   <mat-form-field class="employee-form__field employee-form__field--half-width">
-    <input matInput placeholder="Last name" required>
+    <input [(ngModel)]="employee.lastName"
+           matInput
+           name="lastName"
+           placeholder="Last name"
+           required>
   </mat-form-field>
 
   <mat-form-field class="employee-form__field employee-form__field--half-width">
-    <input matInput [matDatepicker]="birthday" placeholder="Birthday" required>
+    <input [(ngModel)]="employee.birthday"
+           matInput
+           [matDatepicker]="birthday"
+           name="birthday"
+           placeholder="Birthday"
+           required>
     <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
     <mat-datepicker #birthday></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field class="employee-form__field employee-form__field--half-width">
-    <input matInput [matDatepicker]="firstday" placeholder="First working day" required>
+    <input [(ngModel)]="employee.firstday"
+           matInput
+           [matDatepicker]="firstday"
+           name="firstday"
+           placeholder="First working day"
+           required>
     <mat-datepicker-toggle matSuffix [for]="firstday"></mat-datepicker-toggle>
     <mat-datepicker #firstday></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field class="employee-form__field">
-    <textarea matInput placeholder="Description"></textarea>
+    <textarea [(ngModel)]="employee.bio"
+              matInput
+              name="bio"
+              placeholder="Bio"></textarea>
   </mat-form-field>
 
   <div class="employee-form__btn-cont">
     <button mat-raised-button
-            color="accent">Add employee</button>
+            color="accent"
+            (click)="addNewEmployee()">Add employee</button>
   </div>
 </form>
