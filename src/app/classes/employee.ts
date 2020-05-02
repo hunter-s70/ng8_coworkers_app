@@ -6,6 +6,7 @@ export class Employee {
     public lastName?: string,
     public bio?: string,
     public birthday?: moment.Moment,
-    public firstday?: moment.Moment
+    public firstday?: moment.Moment,
+    public positionId?: string,
   ) { }
 }

@@ -44,6 +44,15 @@
               placeholder="Bio"></textarea>
   </mat-form-field>
 
+  <mat-form-field class="employee-form__field">
+    <mat-label>Position</mat-label>
+    <mat-select [(ngModel)]="employee.positionId" name="position">
+      <mat-option *ngFor="let position of positions" [value]="position.id">
+        {{position.value}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <div class="employee-form__btn-cont">
     <button mat-raised-button
             color="accent"

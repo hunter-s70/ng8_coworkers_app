@@ -6,6 +6,7 @@
     "sourceMap": true,
     "declaration": false,
     "skipLibCheck": true, // have errors in *.ts in node_modules/@angular/file/angularfire2
+    "allowSyntheticDefaultImports": true, // can't see moment module
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "module": "esnext",
