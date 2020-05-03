@@ -61,32 +61,10 @@
            required>
   </mat-form-field>
 
-  <mat-form-field class="employee-form__field">
-    <mat-chip-list #chipList aria-label="Skills">
-      <mat-chip
-        *ngFor="let skill of selectedSkills"
-        [selectable]="selectable"
-        [removable]="removable"
-        (removed)="remove(skill)">
-        {{ skill }}
-        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-      </mat-chip>
-      <input
-        placeholder="Add skill..."
-        #skillInput
-        [formControl]="skillCtrl"
-        [matAutocomplete]="auto"
-        [matChipInputFor]="chipList"
-        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        [matChipInputAddOnBlur]="addOnBlur"
-        (matChipInputTokenEnd)="add($event)">
-    </mat-chip-list>
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-      <mat-option *ngFor="let skill of filteredSkills | async" [value]="skill">
-        {{ skill }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+  <app-tags-list [items]="skills"
+                 [selectedItems]="employee.skillsList"
+                 [placeholderText]="'Add skill...'"
+                 class="employee-form__field"></app-tags-list>
 
   <div class="employee-form__btn-cont">
     <button mat-raised-button

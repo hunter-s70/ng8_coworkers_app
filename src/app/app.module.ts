@@ -22,6 +22,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { AddEmployeeComponent } from './pages/add-employee/add-employee.component';
 import { AddEmployeeFormComponent } from './components/add-employee-form/add-employee-form.component';
+import { TagsListComponent } from './components/tags-list/tags-list.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AddEmployeeFormComponent } from './components/add-employee-form/add-emp
     NotFoundComponent,
     SignInComponent,
     AddEmployeeComponent,
-    AddEmployeeFormComponent
+    AddEmployeeFormComponent,
+    TagsListComponent
   ],
   imports: [
     BrowserModule,
