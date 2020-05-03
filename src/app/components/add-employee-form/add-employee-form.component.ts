@@ -39,10 +39,14 @@ export class AddEmployeeFormComponent implements OnInit {
   addNewEmployee(): void {
     if (!this.employeeFrom.invalid) {
       const refCollcetion: AngularFirestoreCollection<any> = this.afs.collection('employees');
+      const formData = this.employeeFrom.value;
       const data = {
-        ...this.employee,
-        firstday: this.employee.firstday.toString(),
-        birthday: this.employee.birthday.toString(),
+        ...formData,
+        firstday: formData.firstday.toString(),
+        birthday: formData.birthday.toString(),
+        skillsList: this.employee.skillsList,
+        createdAt: '',
+        updatedAt: '',
       };
       refCollcetion.add(data).then(() => {
         this.router.navigate(['home']);
