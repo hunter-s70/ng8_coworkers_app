@@ -1,25 +1,23 @@
-<form class="employee-form">
+<form [formGroup]="employeeFrom"
+      class="employee-form">
   <mat-form-field class="employee-form__field employee-form__field--half-width">
-    <input [(ngModel)]="employee.firstName"
-           matInput
-           name="firstName"
+    <input matInput
+           formControlName="firstName"
            placeholder="First name"
            required>
   </mat-form-field>
 
   <mat-form-field class="employee-form__field employee-form__field--half-width">
-    <input [(ngModel)]="employee.lastName"
-           matInput
-           name="lastName"
+    <input matInput
+           formControlName="lastName"
            placeholder="Last name"
            required>
   </mat-form-field>
 
   <mat-form-field class="employee-form__field employee-form__field--half-width">
-    <input [(ngModel)]="employee.birthday"
-           matInput
+    <input matInput
            [matDatepicker]="birthday"
-           name="birthday"
+           formControlName="birthday"
            placeholder="Birthday"
            required>
     <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
@@ -27,10 +25,9 @@
   </mat-form-field>
 
   <mat-form-field class="employee-form__field employee-form__field--half-width">
-    <input [(ngModel)]="employee.firstday"
-           matInput
+    <input matInput
            [matDatepicker]="firstday"
-           name="firstday"
+           formControlName="firstday"
            placeholder="First working day"
            required>
     <mat-datepicker-toggle matSuffix [for]="firstday"></mat-datepicker-toggle>
@@ -38,15 +35,16 @@
   </mat-form-field>
 
   <mat-form-field class="employee-form__field">
-    <textarea [(ngModel)]="employee.bio"
-              matInput
-              name="bio"
+    <textarea matInput
+              formControlName="bio"
+              rows="4"
               placeholder="Bio"></textarea>
   </mat-form-field>
 
   <mat-form-field class="employee-form__field employee-form__field--half-width">
     <mat-label>Position</mat-label>
-    <mat-select [(ngModel)]="employee.positionId" name="position">
+    <mat-select formControlName="positionId"
+                required>
       <mat-option *ngFor="let position of positions" [value]="position.id">
         {{ position.value }}
       </mat-option>
@@ -54,9 +52,9 @@
   </mat-form-field>
 
   <mat-form-field class="employee-form__field employee-form__field--half-width">
-    <input [(ngModel)]="employee.email"
-           matInput
-           name="email"
+    <input matInput
+           formControlName="email"
+           type="email"
            placeholder="Email"
            required>
   </mat-form-field>
@@ -69,6 +67,7 @@
   <div class="employee-form__btn-cont">
     <button mat-raised-button
             color="accent"
+            [disabled]="employeeFrom.invalid"
             (click)="addNewEmployee()">Add employee</button>
   </div>
 </form>

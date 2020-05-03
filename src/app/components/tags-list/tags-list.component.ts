@@ -37,7 +37,7 @@ export class TagsListComponent implements OnInit {
       const value = event.value;
 
       // Add tag
-      if ((value || '').trim()) {
+      if ((value || '').trim() && !this._isSelctedItem(value)) {
         this.selectedItems.push(value.trim());
       }
 
@@ -59,13 +59,22 @@ export class TagsListComponent implements OnInit {
   }
 
   selectItem(event: MatAutocompleteSelectedEvent): void {
-    this.selectedItems.push(event.option.viewValue);
+    const value = event.option.viewValue;
+
+    if (!this._isSelctedItem(value)) {
+      this.selectedItems.push(value);
+    }
     this.tagInput.nativeElement.value = '';
     this.itemInputCtrl.setValue(null);
   }
 
+  private _isSelctedItem(value: string): boolean {
+    return !!this.selectedItems.find(item => item.toLowerCase() === (value || '').trim().toLowerCase());
+  }
+
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
+
     return this.items.filter(item => item.toLowerCase().indexOf(filterValue) === 0);
   }
 

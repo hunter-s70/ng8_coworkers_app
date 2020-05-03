@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Employee } from '../../classes/employee';
 import { Router } from '@angular/router';
 import { SelectItem } from '../../services/select-item';
+import { FormBuilder, Validators } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Component({
@@ -12,6 +13,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 export class AddEmployeeFormComponent implements OnInit {
 
   constructor(
+    private fb: FormBuilder,
     public afs: AngularFirestore,
     public router: Router,
   ) { }
@@ -24,16 +26,28 @@ export class AddEmployeeFormComponent implements OnInit {
   ];
   skills: string[] = ['Javascript', 'Ruby', 'Python', 'rails-admin', 'Vue.js'];
 
+  employeeFrom = this.fb.group({
+    firstName: [this.employee.firstName, [Validators.required, Validators.maxLength(20)]],
+    lastName: [this.employee.lastName, [Validators.required, Validators.maxLength(20)]],
+    email: [this.employee.email, [Validators.required, Validators.email, Validators.maxLength(50)]],
+    bio: [this.employee.bio, [Validators.maxLength(800)]],
+    positionId: [this.employee.positionId, [Validators.required]],
+    birthday: [this.employee.birthday, [Validators.required]],
+    firstday: [this.employee.firstday, [Validators.required]],
+  });
+
   addNewEmployee(): void {
-    const refCollcetion: AngularFirestoreCollection<any> = this.afs.collection('employees');
-    const data = {
-      ...this.employee,
-      firstday: this.employee.firstday.toString(),
-      birthday: this.employee.birthday.toString(),
-    };
-    refCollcetion.add(data).then(() => {
-      this.router.navigate(['home']);
-    });
+    if (!this.employeeFrom.invalid) {
+      const refCollcetion: AngularFirestoreCollection<any> = this.afs.collection('employees');
+      const data = {
+        ...this.employee,
+        firstday: this.employee.firstday.toString(),
+        birthday: this.employee.birthday.toString(),
+      };
+      refCollcetion.add(data).then(() => {
+        this.router.navigate(['home']);
+      });
+    }
   }
 
   ngOnInit() {
