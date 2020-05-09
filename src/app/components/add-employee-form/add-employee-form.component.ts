@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Employee } from '../../classes/employee';
-import { Router } from '@angular/router';
 import { SelectItem } from '../../services/select-item';
 import { FormBuilder, Validators } from '@angular/forms';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-add-employee-form',
@@ -14,11 +12,15 @@ export class AddEmployeeFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    public afs: AngularFirestore,
-    public router: Router,
   ) { }
 
-  employee: Employee = new Employee();
+  @Input() employeeData: Employee;
+  @Output() saveData = new EventEmitter<object>();
+
+  get employee(): Employee {
+    return this.employeeData ? this.employeeData : new Employee();
+  }
+
   positions: SelectItem[] = [
     {id: 'frontent', value: 'Front-end'},
     {id: 'backend', value: 'Back-end'},
@@ -38,21 +40,9 @@ export class AddEmployeeFormComponent implements OnInit {
 
   addNewEmployee(): void {
     if (!this.employeeFrom.invalid) {
-      const refCollcetion: AngularFirestoreCollection<any> = this.afs.collection('employees');
       const formData = this.employeeFrom.value;
-      const data = {
-        ...formData,
-        firstday: formData.firstday.toString(),
-        birthday: formData.birthday.toString(),
-        skillsList: this.employee.skillsList,
-        userPhoto: this.employee.userPhoto,
-        isActive: true,
-        createdAt: '',
-        updatedAt: '',
-      };
-      refCollcetion.add(data).then(() => {
-        this.router.navigate(['home']);
-      });
+      const data = this.employee.genEmployeeDataObject(formData);
+      this.saveData.emit(data);
     }
   }
 

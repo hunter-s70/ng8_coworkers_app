@@ -10,6 +10,19 @@ export class Employee {
     public birthday: moment.Moment = moment(),
     public firstday: moment.Moment = moment(),
     public userPhoto: string = '',
+    public isActive: boolean = true,
+    public createdAt: string = moment().toString(),
+    public updatedAt: moment.Moment = moment(),
     public bio?: string,
   ) { }
+
+  genEmployeeDataObject(formData): object {
+    return {
+      ...this,
+      ...formData,
+      firstday: formData.firstday.toString(),
+      birthday: formData.birthday.toString(),
+      updatedAt: moment().toString(),
+    };
+  }
 }

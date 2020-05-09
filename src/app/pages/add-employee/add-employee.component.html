@@ -1,4 +1,5 @@
 <div class="add-employee">
   <h1 class="add-employee__title page-title">Add employee information</h1>
-  <app-add-employee-form></app-add-employee-form>
+  <app-add-employee-form [employeeData]="employee"
+                         (saveData)="employeeSave($event)"></app-add-employee-form>
 </div>
