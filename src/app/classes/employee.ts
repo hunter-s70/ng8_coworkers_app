@@ -5,10 +5,11 @@ export class Employee {
     public firstName: string = '',
     public lastName: string = '',
     public email: string = '',
-    public bio?: string,
     public positionId: string = '',
     public skillsList: string[] = [],
     public birthday: moment.Moment = moment(),
     public firstday: moment.Moment = moment(),
+    public userPhoto: string = '',
+    public bio?: string,
   ) { }
 }

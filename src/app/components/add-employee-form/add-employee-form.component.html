@@ -1,5 +1,9 @@
 <form [formGroup]="employeeFrom"
       class="employee-form">
+  <app-avatar [avatar]="employee.userPhoto"
+              class="employee-form__avatar employee-form__field"
+              (updated)="updateAvatar($event)"></app-avatar>
+
   <mat-form-field class="employee-form__field employee-form__field--half-width">
     <input matInput
            formControlName="firstName"

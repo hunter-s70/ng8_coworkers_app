@@ -23,6 +23,7 @@ import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { AddEmployeeComponent } from './pages/add-employee/add-employee.component';
 import { AddEmployeeFormComponent } from './components/add-employee-form/add-employee-form.component';
 import { TagsListComponent } from './components/tags-list/tags-list.component';
+import { AvatarComponent } from './components/avatar/avatar.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { TagsListComponent } from './components/tags-list/tags-list.component';
     SignInComponent,
     AddEmployeeComponent,
     AddEmployeeFormComponent,
-    TagsListComponent
+    TagsListComponent,
+    AvatarComponent
   ],
   imports: [
     BrowserModule,

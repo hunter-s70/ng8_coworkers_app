@@ -1,0 +1,14 @@
+<div class="avatar">
+  <label for="avatar-upload"
+         class="avatar__wrapper">
+    <div [ngStyle]="backgroundImage"
+         class="avatar__image"></div>
+  </label>
+  <input type="file"
+         accept="image/*"
+         id="avatar-upload"
+         class="avatar__file-input"
+         (change)="catchUploadedFile($event)">
+  <p *ngFor="let error of avatarErrors"
+     class="avatar__errors">{{ error }}</p>
+</div>

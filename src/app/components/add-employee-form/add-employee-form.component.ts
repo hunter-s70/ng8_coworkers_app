@@ -45,6 +45,8 @@ export class AddEmployeeFormComponent implements OnInit {
         firstday: formData.firstday.toString(),
         birthday: formData.birthday.toString(),
         skillsList: this.employee.skillsList,
+        userPhoto: this.employee.userPhoto,
+        isActive: true,
         createdAt: '',
         updatedAt: '',
       };
@@ -52,6 +54,10 @@ export class AddEmployeeFormComponent implements OnInit {
         this.router.navigate(['home']);
       });
     }
+  }
+
+  updateAvatar(avatar): void {
+    this.employee.userPhoto = avatar;
   }
 
   ngOnInit() {

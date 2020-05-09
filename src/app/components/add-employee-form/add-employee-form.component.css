@@ -19,3 +19,9 @@
   justify-content: flex-end;
   width: 100%;
 }
+
+.employee-form__avatar {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
