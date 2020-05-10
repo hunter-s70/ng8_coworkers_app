@@ -20,9 +20,17 @@ export class Employee {
     return {
       ...this,
       ...formData,
-      firstday: formData.firstday.toString(),
       birthday: formData.birthday.toString(),
+      firstday: formData.firstday.toString(),
       updatedAt: moment().toString(),
     };
+  }
+
+  getBirthday() {
+    return moment(this.birthday);
+  }
+
+  getFirstday() {
+    return moment(this.firstday);
   }
 }

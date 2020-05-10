@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Employee } from '../../classes/employee';
 import { SelectItem } from '../../services/select-item';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add-employee-form',
@@ -14,12 +14,10 @@ export class AddEmployeeFormComponent implements OnInit {
     private fb: FormBuilder,
   ) { }
 
-  @Input() employeeData: Employee;
+  @Input() employee: Employee;
   @Output() saveData = new EventEmitter<object>();
 
-  get employee(): Employee {
-    return this.employeeData ? this.employeeData : new Employee();
-  }
+  employeeFrom: FormGroup;
 
   positions: SelectItem[] = [
     {id: 'frontent', value: 'Front-end'},
@@ -27,16 +25,6 @@ export class AddEmployeeFormComponent implements OnInit {
     {id: 'fullstack', value: 'Full-stack'}
   ];
   skills: string[] = ['Javascript', 'Ruby', 'Python', 'rails-admin', 'Vue.js'];
-
-  employeeFrom = this.fb.group({
-    firstName: [this.employee.firstName, [Validators.required, Validators.maxLength(20)]],
-    lastName: [this.employee.lastName, [Validators.required, Validators.maxLength(20)]],
-    email: [this.employee.email, [Validators.required, Validators.email, Validators.maxLength(50)]],
-    bio: [this.employee.bio, [Validators.maxLength(800)]],
-    positionId: [this.employee.positionId, [Validators.required]],
-    birthday: [this.employee.birthday, [Validators.required]],
-    firstday: [this.employee.firstday, [Validators.required]],
-  });
 
   addNewEmployee(): void {
     if (!this.employeeFrom.invalid) {
@@ -51,6 +39,15 @@ export class AddEmployeeFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.employeeFrom = this.fb.group({
+      firstName: [this.employee.firstName, [Validators.required, Validators.maxLength(20)]],
+      lastName: [this.employee.lastName, [Validators.required, Validators.maxLength(20)]],
+      email: [this.employee.email, [Validators.required, Validators.email, Validators.maxLength(50)]],
+      bio: [this.employee.bio, [Validators.maxLength(800)]],
+      positionId: [this.employee.positionId, [Validators.required]],
+      birthday: [this.employee.getBirthday(), [Validators.required]],
+      firstday: [this.employee.getFirstday(), [Validators.required]],
+    });
   }
 
 }
