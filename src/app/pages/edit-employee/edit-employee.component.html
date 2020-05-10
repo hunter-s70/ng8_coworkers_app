@@ -1,0 +1,14 @@
+<div class="edit-employee">
+
+  <ng-template [ngIf]="employeeExists">
+    <h1 class="edit-employee__title page-title">Edit employee information</h1>
+    <app-add-employee-form *ngIf="employee"
+                           [employee]="employee"
+                           (saveData)="employeeUpdate($event)"></app-add-employee-form>
+  </ng-template>
+
+  <ng-template [ngIf]="!employeeExists">
+    <p class="edit-employee__no-employee-cont">Employee does not exist</p>
+  </ng-template>
+
+</div>

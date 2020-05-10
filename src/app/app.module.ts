@@ -21,6 +21,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { AddEmployeeComponent } from './pages/add-employee/add-employee.component';
+import { EditEmployeeComponent } from './pages/edit-employee/edit-employee.component';
 import { AddEmployeeFormComponent } from './components/add-employee-form/add-employee-form.component';
 import { TagsListComponent } from './components/tags-list/tags-list.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
@@ -36,7 +37,8 @@ import { AvatarComponent } from './components/avatar/avatar.component';
     AddEmployeeComponent,
     AddEmployeeFormComponent,
     TagsListComponent,
-    AvatarComponent
+    AvatarComponent,
+    EditEmployeeComponent
   ],
   imports: [
     BrowserModule,
