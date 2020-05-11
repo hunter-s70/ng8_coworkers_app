@@ -12,7 +12,7 @@ export class EmployeeTileComponent implements OnInit {
 
   @Input() employee: Employee;
 
-  canEdit = false;
+  canEdit = true;
 
   ngOnInit() {
   }

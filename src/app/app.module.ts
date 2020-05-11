@@ -28,6 +28,7 @@ import { AvatarComponent } from './components/avatar/avatar.component';
 import { AvatarUploadComponent } from './components/avatar-upload/avatar-upload.component';
 import { EmployeeTileComponent } from './components/employee-tile/employee-tile.component';
 import { EmployeesListComponent } from './components/employees-list/employees-list.component';
+import { ShowEmployeeComponent } from './pages/show-employee/show-employee.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { EmployeesListComponent } from './components/employees-list/employees-li
     AvatarUploadComponent,
     EditEmployeeComponent,
     EmployeeTileComponent,
-    EmployeesListComponent
+    EmployeesListComponent,
+    ShowEmployeeComponent,
   ],
   imports: [
     BrowserModule,

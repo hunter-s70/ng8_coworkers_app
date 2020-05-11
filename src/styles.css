@@ -4,6 +4,11 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 * { box-sizing: border-box; }
 
+.page-wrapper {
+  max-width: 700px;
+  margin: 20px auto;
+}
+
 .page-title {
   margin-bottom: 20px;
   font-weight: bold;

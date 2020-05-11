@@ -1,0 +1,23 @@
+<div class="show-employee page-wrapper">
+
+  <ng-template [ngIf]="employee && employeeExists">
+    <h1 class="show-employee__title page-title">{{ fullName }}</h1>
+    <div class="show-employee__wrapper">
+      <app-avatar [avatar]="employee.userPhoto"
+                  class="show-employee__avatar"></app-avatar>
+      <div class="show-employee__data-cont">
+        <p class="show-employee__info">{{ employee.positionId }}</p>
+        <p class="show-employee__info">{{ employee.email }}</p>
+        <p class="show-employee__info">{{ employee.birthday }}</p>
+        <p class="show-employee__info">{{ employee.firstday }}</p>
+        <p class="show-employee__info">{{ employee.skillsList }}</p>
+        <p class="show-employee__info">{{ employee.bio }}</p>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="!employeeExists">
+    <p class="edit-employee__no-employee-cont">Employee does not exist</p>
+  </ng-template>
+
+</div>
