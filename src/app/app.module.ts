@@ -25,6 +25,7 @@ import { EditEmployeeComponent } from './pages/edit-employee/edit-employee.compo
 import { AddEmployeeFormComponent } from './components/add-employee-form/add-employee-form.component';
 import { TagsListComponent } from './components/tags-list/tags-list.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
+import { AvatarUploadComponent } from './components/avatar-upload/avatar-upload.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AvatarComponent } from './components/avatar/avatar.component';
     AddEmployeeFormComponent,
     TagsListComponent,
     AvatarComponent,
+    AvatarUploadComponent,
     EditEmployeeComponent
   ],
   imports: [
