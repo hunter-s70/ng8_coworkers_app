@@ -1,0 +1,13 @@
+<a routerLink="/employee"
+   class="employee-tile">
+  <app-avatar [avatar]="employee.userPhoto"
+              class="employee-tile__avatar"></app-avatar>
+  <p class="employee-tile__info employee-tile__info--name">{{ employee.fullName }}</p>
+  <p class="employee-tile__info employee-tile__info--position">{{ employee.positionId }}</p>
+  <div *ngIf="canEdit"
+       class="employee-tile__btn-cont">
+    <a [routerLink]="['/employee', employee.id]"
+       mat-raised-button
+       class="employee-tile__btn">Edit</a>
+  </div>
+</a>

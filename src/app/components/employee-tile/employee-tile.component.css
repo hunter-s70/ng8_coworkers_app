@@ -1,0 +1,41 @@
+.employee-tile {
+  display: block;
+  width: 100%;
+  padding: 20px 15px;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.employee-tile__avatar {
+  display: block;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 15px;
+}
+
+.employee-tile__info {
+  max-width: 100%;
+  margin-bottom: 6px;
+  color: #000;
+  font-size: 14px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.employee-tile__info:last-child {
+  margin-bottom: 0;
+}
+
+.employee-tile__btn-cont {
+  margin-top: 15px;
+}
+
+@media (max-width: 1024px) {
+  .employee-tile {
+    padding: 15px 10px;
+  }
+}

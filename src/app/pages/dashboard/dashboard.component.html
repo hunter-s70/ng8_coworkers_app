@@ -6,18 +6,12 @@
        class="dashboard__add-employee-btn">Add employee</a>
   </div>
 
-  <div class="inner-adjust">
+  <div class="dashboard__content">
 
-    <div class="pt-3 pb-2 mb-3 border-bottom">
-      <h1 class="h2">User Profile</h1>
-    </div>
     <!-- Show user data when logged in -->
     <div class="row" *ngIf="authService.userData as user">
       <div class="col-md-12">
         <div class="media">
-          <img class="dashboard__photo"
-               src="{{(user.photoURL) ? user.photoURL : '/assets/images/user-logo.svg'}}"
-               alt="{{user.displayName}}">
           <div class="media-body">
             <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
             <p>User ID: <strong>{{user.uid}}</strong></p>
@@ -27,6 +21,9 @@
         </div>
       </div>
     </div>
+
+    <app-employees-list [employeesList]="employeesList"
+                        class="dashboard__employees"></app-employees-list>
 
   </div>
 </main>

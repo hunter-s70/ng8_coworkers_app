@@ -1,0 +1,7 @@
+<div class="employees-list">
+  <div *ngFor="let employee of employeesList"
+       class="employees-list__wrapper">
+    <app-employee-tile [employee]="employee"
+                       class="employees-list__employee"></app-employee-tile>
+  </div>
+</div>

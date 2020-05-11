@@ -26,6 +26,8 @@ import { AddEmployeeFormComponent } from './components/add-employee-form/add-emp
 import { TagsListComponent } from './components/tags-list/tags-list.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { AvatarUploadComponent } from './components/avatar-upload/avatar-upload.component';
+import { EmployeeTileComponent } from './components/employee-tile/employee-tile.component';
+import { EmployeesListComponent } from './components/employees-list/employees-list.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { AvatarUploadComponent } from './components/avatar-upload/avatar-upload.
     TagsListComponent,
     AvatarComponent,
     AvatarUploadComponent,
-    EditEmployeeComponent
+    EditEmployeeComponent,
+    EmployeeTileComponent,
+    EmployeesListComponent
   ],
   imports: [
     BrowserModule,
