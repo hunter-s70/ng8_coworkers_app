@@ -1,64 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Employee } from '../../classes/employee';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { EmployeeService } from '../../services/employee.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-employee',
   templateUrl: './edit-employee.component.html',
   styleUrls: ['./edit-employee.component.css']
 })
-export class EditEmployeeComponent implements OnInit {
+export class EditEmployeeComponent implements OnInit, OnDestroy {
 
   constructor(
-    private afs: AngularFirestore,
+    private ems: EmployeeService,
     private route: ActivatedRoute,
     public router: Router,
   ) { }
 
   employee: Employee;
   employeeId: string;
+  employeeData: Subscription;
   employeeExists = true;
 
-  private _getEmployeeData(employeeId) {
-    const employeeRef: AngularFirestoreDocument<any> = this.afs.collection('employees').doc(employeeId);
-    employeeRef.get().subscribe(doc => {
-      this.employeeExists = doc.exists;
-      if (doc.exists) {
-        const {
-          firstName,
-          lastName,
-          email,
-          positionId,
-          skillsList,
-          birthday,
-          firstday,
-          userPhoto,
-          isActive,
-          createdAt,
-          updatedAt,
-          bio
-        } = doc.data();
-        this.employee = new Employee(
-          firstName,
-          lastName,
-          email,
-          positionId,
-          skillsList,
-          birthday,
-          firstday,
-          userPhoto,
-          isActive,
-          createdAt,
-          updatedAt,
-          bio);
-      }
+  private _getEmployeeData(employeeId: string): void {
+    this.employeeData = this.ems.getEmployeeById(employeeId).subscribe((data) => {
+      this.employeeExists = data.exists;
+      this.employee = data.employee;
     });
   }
 
-  employeeUpdate(data) {
-    const employeeRef: AngularFirestoreDocument<any> = this.afs.collection('employees').doc(this.employeeId);
-    employeeRef.set(data, { merge: true }).then(() => {
+  employeeUpdate(data: object): void {
+    const employeeId: string = this.employeeId;
+    this.ems.updateEmployee({employeeId, data}).then(() => {
       this.router.navigate(['home']);
     });
   }
@@ -68,6 +41,10 @@ export class EditEmployeeComponent implements OnInit {
       this.employeeId = params.uid;
       this._getEmployeeData(params.uid);
     });
+  }
+
+  ngOnDestroy() {
+    this.employeeData.unsubscribe();
   }
 
 }
