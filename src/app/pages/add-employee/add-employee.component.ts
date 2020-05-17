@@ -24,8 +24,6 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ems.getSkillsList();
-    this.ems.getPositionsList();
   }
 
 }

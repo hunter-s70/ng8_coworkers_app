@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Employee } from '../classes/employee';
 import { SelectItem } from './select-item';
 import { map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Injectable({
@@ -102,17 +103,25 @@ export class EmployeeService {
     return this.afs.collection('selectors');
   }
 
-  getSkillsList() {
+  getSkillsList(): Subscription {
     const skillsRef: AngularFirestoreDocument<any> = this._getSelectorsRef().doc('skills');
     return skillsRef.get().subscribe((doc) => {
       this.skills = doc.data().list;
     });
   }
 
-  getPositionsList() {
+  getPositionsList(): Subscription {
     const positionsRef: AngularFirestoreDocument<any> = this._getSelectorsRef().doc('positions');
     return positionsRef.get().subscribe((doc) => {
       this.positions = doc.data().list;
     });
+  }
+
+  getPositionNameById(positionId: string): string {
+    if (this.positions && this.positions.length) {
+      const position = this.positions.find((pos) => pos.id === positionId);
+      return position.value || '';
+    }
+    return '';
   }
 }

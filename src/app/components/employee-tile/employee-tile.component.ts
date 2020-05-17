@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Employee } from '../../classes/employee';
+import { EmployeeService } from '../../services/employee.service';
 
 @Component({
   selector: 'app-employee-tile',
@@ -8,7 +9,9 @@ import { Employee } from '../../classes/employee';
 })
 export class EmployeeTileComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private ems: EmployeeService,
+  ) { }
 
   @Input() employee: Employee;
 

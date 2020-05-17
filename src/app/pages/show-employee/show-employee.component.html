@@ -6,7 +6,7 @@
       <app-avatar [avatar]="employee.userPhoto"
                   class="show-employee__avatar"></app-avatar>
       <div class="show-employee__data-cont">
-        <p class="show-employee__info">{{ employee.positionId }}</p>
+        <p class="show-employee__info">{{ ems.getPositionNameById(employee.positionId) }}</p>
         <p class="show-employee__info">{{ employee.email }}</p>
         <p class="show-employee__info">{{ employee.birthday }}</p>
         <p class="show-employee__info">{{ employee.firstday }}</p>
