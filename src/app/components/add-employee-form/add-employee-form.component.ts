@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Employee } from '../../classes/employee';
 import { SelectItem } from '../../services/select-item';
+import { EmployeeService } from '../../services/employee.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
@@ -12,6 +13,7 @@ export class AddEmployeeFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private ems: EmployeeService,
   ) { }
 
   @Input() employee: Employee;
@@ -19,12 +21,13 @@ export class AddEmployeeFormComponent implements OnInit {
 
   employeeFrom: FormGroup;
 
-  positions: SelectItem[] = [
-    {id: 'frontent', value: 'Front-end'},
-    {id: 'backend', value: 'Back-end'},
-    {id: 'fullstack', value: 'Full-stack'}
-  ];
-  skills: string[] = ['Javascript', 'Ruby', 'Python', 'rails-admin', 'Vue.js'];
+  get positions(): SelectItem[] {
+    return this.ems.positions || [];
+  }
+
+  get skills(): string[] {
+    return this.ems.skills || [];
+  }
 
   addNewEmployee(): void {
     if (!this.employeeFrom.invalid) {

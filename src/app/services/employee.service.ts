@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Employee } from '../classes/employee';
+import { SelectItem } from './select-item';
 import { map } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 
@@ -11,6 +12,9 @@ export class EmployeeService {
   constructor(
     private afs: AngularFirestore,
   ) { }
+
+  skills: string[] = [];
+  positions: SelectItem[] = [];
 
 
   private _getCollectionRef(): AngularFirestoreCollection<any> {
@@ -92,5 +96,23 @@ export class EmployeeService {
         bio);
     }
     return employee;
+  }
+
+  private _getSelectorsRef(): AngularFirestoreCollection<any> {
+    return this.afs.collection('selectors');
+  }
+
+  getSkillsList() {
+    const skillsRef: AngularFirestoreDocument<any> = this._getSelectorsRef().doc('skills');
+    return skillsRef.get().subscribe((doc) => {
+      this.skills = doc.data().list;
+    });
+  }
+
+  getPositionsList() {
+    const positionsRef: AngularFirestoreDocument<any> = this._getSelectorsRef().doc('positions');
+    return positionsRef.get().subscribe((doc) => {
+      this.positions = doc.data().list;
+    });
   }
 }
