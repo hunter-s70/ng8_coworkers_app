@@ -29,6 +29,7 @@ import { AvatarUploadComponent } from './components/avatar-upload/avatar-upload.
 import { EmployeeTileComponent } from './components/employee-tile/employee-tile.component';
 import { EmployeesListComponent } from './components/employees-list/employees-list.component';
 import { ShowEmployeeComponent } from './pages/show-employee/show-employee.component';
+import { LoggedInRootComponent } from './pages/logged-in-root/logged-in-root.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ShowEmployeeComponent } from './pages/show-employee/show-employee.compo
     EmployeeTileComponent,
     EmployeesListComponent,
     ShowEmployeeComponent,
+    LoggedInRootComponent,
   ],
   imports: [
     BrowserModule,

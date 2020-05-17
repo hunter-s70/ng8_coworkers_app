@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { NotFoundComponent } from '../pages/not-found/not-found.component';
 import { SignInComponent } from '../pages/sign-in/sign-in.component';
+import { LoggedInRootComponent } from '../pages/logged-in-root/logged-in-root.component';
 import { AddEmployeeComponent } from '../pages/add-employee/add-employee.component';
 import { EditEmployeeComponent } from '../pages/edit-employee/edit-employee.component';
 import { ShowEmployeeComponent } from '../pages/show-employee/show-employee.component';
@@ -13,12 +14,17 @@ import { SecureInnerPagesGuard } from '../guards/secure-inner-pages.guard';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full'},
+  { path: '', redirectTo: '/app/home', pathMatch: 'full'},
   { path: 'sign-in', component: SignInComponent, canActivate: [SecureInnerPagesGuard]},
-  { path: 'home', component: DashboardComponent, canActivate: [AuthGuard]},
-  { path: 'employee-add', component: AddEmployeeComponent, canActivate: [AuthGuard]},
-  { path: 'employee-edit/:uid', component: EditEmployeeComponent, canActivate: [AuthGuard]},
-  { path: 'employee/:uid', component: ShowEmployeeComponent, canActivate: [AuthGuard]},
+  { path: 'app',
+    component: LoggedInRootComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'home', component: DashboardComponent},
+      { path: 'employee-add', component: AddEmployeeComponent},
+      { path: 'employee-edit/:uid', component: EditEmployeeComponent},
+      { path: 'employee/:uid', component: ShowEmployeeComponent},
+    ]},
   { path: '**', component: NotFoundComponent }
 ];
 

@@ -32,7 +32,7 @@ export class EditEmployeeComponent implements OnInit, OnDestroy {
   employeeUpdate(data: object): void {
     const employeeId: string = this.employeeId;
     this.ems.updateEmployee({employeeId, data}).then(() => {
-      this.router.navigate(['home']);
+      this.router.navigate(['app/home']);
     });
   }
 

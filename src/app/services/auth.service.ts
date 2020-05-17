@@ -35,7 +35,7 @@ export class AuthService {
       .then((result) => {
         return this.SetUserData(result.user);
       }).then(() => {
-        this.router.navigate(['home']);
+        this.router.navigate(['app/home']);
       }).catch((error) => {
         window.alert(error.message);
       });

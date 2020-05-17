@@ -19,7 +19,7 @@ export class AddEmployeeComponent implements OnInit {
 
   employeeSave(data: object): void {
     this.ems.addEmployee({data}).then(() => {
-      this.router.navigate(['home']);
+      this.router.navigate(['app/home']);
     });
   }
 
