@@ -10,6 +10,7 @@ import { EditEmployeeComponent } from '../pages/edit-employee/edit-employee.comp
 import { ShowEmployeeComponent } from '../pages/show-employee/show-employee.component';
 
 import { AuthGuard } from '../guards/auth.guard';
+import { AdminGuard } from '../guards/admin.guard';
 import { SecureInnerPagesGuard } from '../guards/secure-inner-pages.guard';
 
 
@@ -21,8 +22,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'home', component: DashboardComponent},
-      { path: 'employee-add', component: AddEmployeeComponent},
-      { path: 'employee-edit/:uid', component: EditEmployeeComponent},
+      { path: 'employee-add', component: AddEmployeeComponent, canActivate: [AdminGuard]},
+      { path: 'employee-edit/:uid', component: EditEmployeeComponent, canActivate: [AdminGuard]},
       { path: 'employee/:uid', component: ShowEmployeeComponent},
     ]},
   { path: '**', component: NotFoundComponent }

@@ -4,7 +4,7 @@
               class="employee-tile__avatar"></app-avatar>
   <p class="employee-tile__info employee-tile__info--name">{{ employee.fullName }}</p>
   <p class="employee-tile__info employee-tile__info--position">{{ ems.getPositionNameById(employee.positionId) }}</p>
-  <div *ngIf="canEdit"
+  <div *ngIf="authService.isAdmin"
        class="employee-tile__btn-cont">
     <a [routerLink]="['/app/employee-edit', employee.id]"
        mat-raised-button

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class AuthService {
   userData: any;
+  isAdminUser: boolean;
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
@@ -20,6 +21,7 @@ export class AuthService {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.userData = user;
+        this._getStoredUserInfo(user);
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
       } else {
@@ -94,6 +96,20 @@ export class AuthService {
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
     return user !== null;
+  }
+
+  get isAdmin(): boolean {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return user !== null && this.isAdminUser;
+  }
+
+  private _getStoredUserInfo(user) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+    userRef.get().subscribe((doc) => {
+      if (doc.exists) {
+        this.isAdminUser = doc.data().isAdmin;
+      }
+    });
   }
 
   // Setting up user data when sign in with username/password,

@@ -1,6 +1,7 @@
 <main class="dashboard">
   <div class="dashboard__actions-cont">
-    <a mat-raised-button
+    <a *ngIf="authService.isAdmin"
+       mat-raised-button
        color="accent"
        routerLink="/app/employee-add"
        class="dashboard__add-employee-btn">Add employee</a>
