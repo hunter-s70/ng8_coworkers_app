@@ -22,6 +22,12 @@ export class EmployeeService {
     return this.afs.collection('employees');
   }
 
+  private _getLimitedCollectionRef({limit}): AngularFirestoreCollection<any> {
+    return this.afs.collection('employees', (ref) => {
+      return limit ? ref.limit(limit) : ref;
+    });
+  }
+
   private _getDocumentRef(docId: string): AngularFirestoreDocument<any> {
     return this.afs.doc(`employees/${docId}`);
   }
@@ -36,7 +42,7 @@ export class EmployeeService {
   }
 
   getEmployeesList() {
-    return this._getCollectionRef().get().pipe(map((querySnapshot) => {
+    return this._getLimitedCollectionRef({limit: 20}).get().pipe(map((querySnapshot) => {
       return this._getEmployeesList(querySnapshot);
     }));
   }
