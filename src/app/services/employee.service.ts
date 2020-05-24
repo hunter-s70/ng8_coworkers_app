@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Employee } from '../classes/employee';
+import { EmployeesFilters } from '../services/employees-filters';
 import { SelectItem } from './select-item';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
@@ -22,9 +23,21 @@ export class EmployeeService {
     return this.afs.collection('employees');
   }
 
-  private _getLimitedCollectionRef({limit}): AngularFirestoreCollection<any> {
+  private _getLimitedCollectionRef(params: EmployeesFilters): AngularFirestoreCollection<any> {
     return this.afs.collection('employees', (ref) => {
-      return limit ? ref.limit(limit) : ref;
+      let colRef = params.limit ? ref.limit(params.limit) : ref;
+      if (params.positionId) {
+        colRef = colRef.where('positionId', '==', params.positionId);
+      }
+      if (params.searchBy) {
+        colRef = colRef.where('lastName', '==', params.searchBy);
+        // colRef = colRef.where('email', '==', params.searchBy);
+      }
+      if (params.skillsList && params.skillsList.length) {
+        colRef = colRef.where('skillsList', 'array-contains-any', params.skillsList);
+        // colRef = colRef.where('skillsList', 'in', [params.skillsList]);
+      }
+      return colRef;
     });
   }
 
@@ -41,8 +54,8 @@ export class EmployeeService {
     return this._getDocumentRef(employeeId).set(data, { merge: true });
   }
 
-  getEmployeesList() {
-    return this._getLimitedCollectionRef({limit: 20}).get().pipe(map((querySnapshot) => {
+  getEmployeesList(params: EmployeesFilters) {
+    return this._getLimitedCollectionRef(params).get().pipe(map((querySnapshot) => {
       return this._getEmployeesList(querySnapshot);
     }));
   }

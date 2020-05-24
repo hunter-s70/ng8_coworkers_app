@@ -1,0 +1,34 @@
+.employees-filters {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.employees-filters__field {
+  margin-right: 15px;
+}
+
+.employees-filters__field--tags {
+  width: 100%;
+}
+
+.employees-filters__actions-btn-cont {
+  display: flex;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+.employees-filters__btn-reset {
+  margin-left: 15px;
+}
+
+@media (max-width: 1024px) {
+  .employees-filters {
+    flex-direction: column;
+  }
+
+  .employees-filters__field {
+    width: 100%;
+    margin: 0;
+  }
+}

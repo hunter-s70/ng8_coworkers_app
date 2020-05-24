@@ -1,0 +1,32 @@
+<div class="employees-filters">
+  <mat-form-field class="employees-filters__field">
+    <input matInput
+           [(ngModel)]="searchBy"
+           placeholder="Name, email">
+  </mat-form-field>
+
+  <mat-form-field class="employees-filters__field">
+    <mat-label>Position</mat-label>
+    <mat-select [(ngModel)]="positionId">
+      <mat-option *ngFor="let position of positions" [value]="position.id">
+        {{ position.value }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <app-tags-list [items]="skills"
+                 [selectedItems]="skillsList"
+                 [placeholderText]="'Type skill...'"
+                 class="employees-filters__field employees-filters__field--tags"></app-tags-list>
+
+  <div class="employees-filters__actions-btn-cont">
+    <button mat-raised-button
+            color="accent"
+            class="employees-filters__btn-apply"
+            (click)="applyFilters()">Apply filters</button>
+    <button mat-raised-button
+            color="warn"
+            class="employees-filters__btn-reset"
+            (click)="resetFilters()">Reset</button>
+  </div>
+</div>

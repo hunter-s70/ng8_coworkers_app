@@ -10,6 +10,10 @@
   margin-bottom: 15px;
 }
 
+.dashboard__filters {
+  width: 100%;
+}
+
 .dashboard__photo {
   width: 60px;
 }

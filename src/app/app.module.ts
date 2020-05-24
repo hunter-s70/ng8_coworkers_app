@@ -30,6 +30,7 @@ import { EmployeeTileComponent } from './components/employee-tile/employee-tile.
 import { EmployeesListComponent } from './components/employees-list/employees-list.component';
 import { ShowEmployeeComponent } from './pages/show-employee/show-employee.component';
 import { LoggedInRootComponent } from './pages/logged-in-root/logged-in-root.component';
+import { EmployeesFiltersComponent } from './components/employees-filters/employees-filters.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { LoggedInRootComponent } from './pages/logged-in-root/logged-in-root.com
     EmployeesListComponent,
     ShowEmployeeComponent,
     LoggedInRootComponent,
+    EmployeesFiltersComponent,
   ],
   imports: [
     BrowserModule,
