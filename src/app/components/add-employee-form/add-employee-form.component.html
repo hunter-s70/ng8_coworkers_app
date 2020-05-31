@@ -1,5 +1,7 @@
 <form [formGroup]="employeeFrom"
       class="employee-form">
+  <mat-slide-toggle formControlName="isActive">Is active employee</mat-slide-toggle>
+
   <app-avatar-upload [avatar]="employee.userPhoto"
                      class="employee-form__avatar employee-form__field"
                      (updated)="updateAvatar($event)"></app-avatar-upload>

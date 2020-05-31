@@ -107,7 +107,7 @@ export class AuthService {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     userRef.get().subscribe((doc) => {
       if (doc.exists) {
-        this.isAdminUser = doc.data().isAdmin;
+        this.isAdminUser = !!doc.data().isAdmin;
       }
     });
   }

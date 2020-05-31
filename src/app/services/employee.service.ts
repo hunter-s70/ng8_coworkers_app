@@ -23,9 +23,12 @@ export class EmployeeService {
     return this.afs.collection('employees');
   }
 
-  private _getLimitedCollectionRef(params: EmployeesFilters): AngularFirestoreCollection<any> {
+  private _getLimitedCollectionRef(params: EmployeesFilters, isFullList): AngularFirestoreCollection<any> {
     return this.afs.collection('employees', (ref) => {
       let colRef = params.limit ? ref.limit(params.limit) : ref;
+      if (!isFullList) {
+        colRef = colRef.where('isActive', '==', true);
+      }
       if (params.positionId) {
         colRef = colRef.where('positionId', '==', params.positionId);
       }
@@ -52,8 +55,8 @@ export class EmployeeService {
     return this._getDocumentRef(employeeId).set(data, { merge: true });
   }
 
-  getEmployeesList(params: EmployeesFilters) {
-    return this._getLimitedCollectionRef(params).get().pipe(map((querySnapshot) => {
+  getEmployeesList(params: EmployeesFilters, isFullList: boolean) {
+    return this._getLimitedCollectionRef(params, isFullList).get().pipe(map((querySnapshot) => {
       return this._getEmployeesList(querySnapshot);
     }));
   }

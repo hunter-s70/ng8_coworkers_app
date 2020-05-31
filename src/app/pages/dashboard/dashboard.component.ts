@@ -18,16 +18,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   employeesList = [];
   employeeData: Subscription;
+  isFullList = this.authService.isAdmin;
 
   private _getAllEmployees(): void {
-    this.employeeData = this.ems.getEmployeesList({limit: 15}).subscribe((data) => this.employeesList = data);
+    this.employeeData = this.ems.getEmployeesList({limit: 15}, this.isFullList).subscribe((data) => this.employeesList = data);
   }
 
   applyFilters(params: EmployeesFilters): void {
     if (this.employeeData) {
       this.employeeData.unsubscribe();
     }
-    this.employeeData = this.ems.getEmployeesList(params).subscribe((data) => this.employeesList = data);
+    this.employeeData = this.ems.getEmployeesList(params, this.isFullList).subscribe((data) => this.employeesList = data);
   }
 
   resetFilters(): void {

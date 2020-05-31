@@ -48,6 +48,7 @@ export class AddEmployeeFormComponent implements OnInit {
 
   ngOnInit() {
     this.employeeFrom = this.fb.group({
+      isActive: [this.employee.isActive],
       firstName: [this.employee.firstName, [Validators.required, Validators.maxLength(20)]],
       lastName: [this.employee.lastName, [Validators.required, Validators.maxLength(20)]],
       email: [this.employee.email, [Validators.required, Validators.email, Validators.maxLength(50)]],
