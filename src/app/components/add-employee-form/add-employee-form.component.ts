@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Employee } from '../../classes/employee';
-import { SelectItem } from '../../services/select-item';
+import { SelectItem } from '../../interfaces/select-item';
 import { EmployeeService } from '../../services/employee.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
@@ -17,9 +17,14 @@ export class AddEmployeeFormComponent implements OnInit {
   ) { }
 
   @Input() employee: Employee;
+  @Input() submitBtnText: string;
   @Output() saveData = new EventEmitter<object>();
 
   employeeFrom: FormGroup;
+
+  get saveFormText(): string {
+    return this.submitBtnText || 'Add employee';
+  }
 
   get positions(): SelectItem[] {
     return this.ems.positions || [];

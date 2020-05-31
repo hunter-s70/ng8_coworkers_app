@@ -4,6 +4,7 @@
     <h1 class="edit-employee__title page-title">Edit employee information</h1>
     <app-add-employee-form *ngIf="employee"
                            [employee]="employee"
+                           [submitBtnText]="'Edit employee'"
                            (saveData)="employeeUpdate($event)"></app-add-employee-form>
   </ng-template>
 
