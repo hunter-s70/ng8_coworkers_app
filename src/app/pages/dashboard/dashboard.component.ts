@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { EmployeeService } from '../../services/employee.service';
 import { Subscription } from 'rxjs';
-import { EmployeesFilters } from '../../services/employees-filters';
+import { EmployeesFilters } from '../../interfaces/employees-filters';
 
 @Component({
   selector: 'app-dashboard',

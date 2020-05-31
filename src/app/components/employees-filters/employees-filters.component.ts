@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { SelectItem } from '../../services/select-item';
+import { SelectItem } from '../../interfaces/select-item';
 import { EmployeeService } from '../../services/employee.service';
 
 @Component({

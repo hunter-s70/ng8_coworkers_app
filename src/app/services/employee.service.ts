@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Employee } from '../classes/employee';
-import { EmployeesFilters } from '../services/employees-filters';
-import { SelectItem } from './select-item';
+import { EmployeesFilters } from '../interfaces/employees-filters';
+import { SelectItem } from '../interfaces/select-item';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
