@@ -29,13 +29,11 @@ export class EmployeeService {
       if (params.positionId) {
         colRef = colRef.where('positionId', '==', params.positionId);
       }
-      if (params.searchBy) {
-        colRef = colRef.where('lastName', '==', params.searchBy);
-        // colRef = colRef.where('email', '==', params.searchBy);
+      if (params.skill) {
+        colRef = colRef.where('skillsList', 'array-contains', params.skill);
       }
-      if (params.skillsList && params.skillsList.length) {
-        colRef = colRef.where('skillsList', 'array-contains-any', params.skillsList);
-        // colRef = colRef.where('skillsList', 'in', [params.skillsList]);
+      if (params.searchBy) {
+        colRef = colRef.where(params.searchBy, '==', params.searchText);
       }
       return colRef;
     });

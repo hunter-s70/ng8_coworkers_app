@@ -1,6 +1,7 @@
 export interface EmployeesFilters {
   limit?: number;
   searchBy?: '';
+  searchText?: '';
   positionId?: '';
-  skillsList?: [];
+  skill?: '';
 }

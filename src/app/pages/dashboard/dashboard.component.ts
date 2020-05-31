@@ -20,10 +20,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   employeeData: Subscription;
 
   private _getAllEmployees(): void {
-     this.employeeData = this.ems.getEmployeesList({limit: 20}).subscribe((data) => this.employeesList = data);
+    this.employeeData = this.ems.getEmployeesList({limit: 15}).subscribe((data) => this.employeesList = data);
   }
 
   applyFilters(params: EmployeesFilters): void {
+    if (this.employeeData) {
+      this.employeeData.unsubscribe();
+    }
     this.employeeData = this.ems.getEmployeesList(params).subscribe((data) => this.employeesList = data);
   }
 

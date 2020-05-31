@@ -1,9 +1,20 @@
 <div class="employees-filters">
   <mat-form-field class="employees-filters__field">
-    <input matInput
-           [(ngModel)]="searchBy"
-           placeholder="Name, email">
+    <mat-label>Search by</mat-label>
+    <mat-select [(ngModel)]="searchBy">
+      <mat-option *ngFor="let item of searchByList" [value]="item.id">
+        {{ item.value }}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
+
+
+  <mat-form-field class="employees-filters__field">
+    <input matInput
+           [(ngModel)]="searchText"
+           [placeholder]="searchByPlaceholder">
+  </mat-form-field>
+
 
   <mat-form-field class="employees-filters__field">
     <mat-label>Position</mat-label>
@@ -14,10 +25,16 @@
     </mat-select>
   </mat-form-field>
 
-  <app-tags-list [items]="skills"
-                 [selectedItems]="skillsList"
-                 [placeholderText]="'Type skill...'"
-                 class="employees-filters__field employees-filters__field--tags"></app-tags-list>
+
+  <mat-form-field class="employees-filters__field">
+    <mat-label>Skill</mat-label>
+    <mat-select [(ngModel)]="skill">
+      <mat-option *ngFor="let skill of skillsList" [value]="skill">
+        {{ skill }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
 
   <div class="employees-filters__actions-btn-cont">
     <button mat-raised-button

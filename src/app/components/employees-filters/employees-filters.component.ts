@@ -16,15 +16,27 @@ export class EmployeesFiltersComponent implements OnInit {
   @Output() filtersChanged = new EventEmitter<object>();
   @Output() filtersReset = new EventEmitter<object>();
 
-  searchBy = '';
+  skill = '';
   positionId = '';
-  skillsList: string[] = [];
+  searchText = '';
+  searchBy = '';
+  searchByList: SelectItem[] = [
+    {id: 'email', value: 'Email'},
+    {id: 'lastName', value: 'Surname'},
+  ];
+
+  get searchByPlaceholder(): string {
+    const searchByItem = this.searchByList.find((item) => item.id === this.searchBy);
+    const searchByText = searchByItem ? searchByItem.value.toLowerCase() : '...';
+    return `Search ${searchByText}`;
+  }
 
   get filters(): object {
     return {
       searchBy: this.searchBy,
+      searchText: this.searchText,
       positionId: this.positionId,
-      skillsList: this.skillsList,
+      skill: this.skill,
     };
   }
 
@@ -32,7 +44,7 @@ export class EmployeesFiltersComponent implements OnInit {
     return this.ems.positions || [];
   }
 
-  get skills(): string[] {
+  get skillsList(): string[] {
     return this.ems.skills || [];
   }
 
@@ -47,8 +59,9 @@ export class EmployeesFiltersComponent implements OnInit {
 
   clearFilters(): void {
     this.searchBy = '';
+    this.searchText = '';
     this.positionId = '';
-    this.skillsList = [];
+    this.skill = '';
   }
 
   ngOnInit() {
