@@ -28,5 +28,12 @@
     <app-employees-list [employeesList]="employeesList"
                         class="dashboard__employees"></app-employees-list>
 
+    <div *ngIf="lastVisibleDoc"
+         class="dashboard__load-more-cont">
+      <button mat-raised-button
+              color="accent"
+              class="dashboard__load-more-btn" (click)="loadMoreEmployees()">Load more</button>
+    </div>
+
   </div>
 </main>

@@ -18,24 +18,52 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   employeesList = [];
   employeeData: Subscription;
+  employeesPerPage: number;
+  lastVisibleDoc: '';
   isFullList = this.authService.isAdmin;
 
   private _getAllEmployees(): void {
-    this.employeeData = this.ems.getEmployeesList({limit: 15}, this.isFullList).subscribe((data) => this.employeesList = data);
+    this._checkSubscription();
+    this.employeeData = this.ems
+      .getEmployeesList({limit: this.employeesPerPage}, this.isFullList)
+      .subscribe(({employeesList, lastVisibleDoc}) => {
+        this.employeesList = employeesList;
+        this.lastVisibleDoc = lastVisibleDoc;
+      });
   }
 
   applyFilters(params: EmployeesFilters): void {
-    if (this.employeeData) {
-      this.employeeData.unsubscribe();
-    }
-    this.employeeData = this.ems.getEmployeesList(params, this.isFullList).subscribe((data) => this.employeesList = data);
+    this._checkSubscription();
+    this.employeeData = this.ems
+      .getEmployeesList(params, this.isFullList)
+      .subscribe(({employeesList}) => {
+        this.employeesList = employeesList;
+        this.lastVisibleDoc = null;
+      });
   }
 
   resetFilters(): void {
     this._getAllEmployees();
   }
 
+  loadMoreEmployees(): void {
+    this._checkSubscription();
+    this.employeeData = this.ems
+      .getEmployeesList({startAfter: this.lastVisibleDoc, limit: this.employeesPerPage}, this.isFullList)
+      .subscribe(({employeesList, lastVisibleDoc}) => {
+        this.employeesList = [...this.employeesList, ...employeesList];
+        this.lastVisibleDoc = lastVisibleDoc;
+      });
+  }
+
+  private _checkSubscription(): void {
+    if (this.employeeData) {
+      this.employeeData.unsubscribe();
+    }
+  }
+
   ngOnInit() {
+    this.employeesPerPage = 1;
     this._getAllEmployees();
   }
 

@@ -17,3 +17,10 @@
 .dashboard__photo {
   width: 60px;
 }
+
+.dashboard__load-more-cont {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 15px 0;
+}

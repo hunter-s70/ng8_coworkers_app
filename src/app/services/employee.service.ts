@@ -25,19 +25,19 @@ export class EmployeeService {
 
   private _getLimitedCollectionRef(params: EmployeesFilters, isFullList): AngularFirestoreCollection<any> {
     return this.afs.collection('employees', (ref) => {
-      let colRef = params.limit ? ref.limit(params.limit) : ref;
-      if (!isFullList) {
-        colRef = colRef.where('isActive', '==', true);
-      }
-      if (params.positionId) {
-        colRef = colRef.where('positionId', '==', params.positionId);
-      }
-      if (params.skill) {
-        colRef = colRef.where('skillsList', 'array-contains', params.skill);
-      }
-      if (params.searchBy) {
-        colRef = colRef.where(params.searchBy, '==', params.searchText);
-      }
+      let colRef = !isFullList ? ref.where('isActive', '==', true) : ref;
+      colRef = params.limit ? colRef.limit(params.limit) : colRef;
+      colRef = params.startAfter ? colRef.startAfter(params.startAfter) : colRef;
+      return colRef;
+    });
+  }
+
+  private _getFilteredCollectionRef(params: EmployeesFilters, isFullList): AngularFirestoreCollection<any> {
+    return this.afs.collection('employees', (ref) => {
+      let colRef = !isFullList ? ref.where('isActive', '==', true) : ref;
+      colRef = params.positionId ? colRef.where('positionId', '==', params.positionId) : colRef;
+      colRef = params.skill ? colRef.where('skillsList', 'array-contains', params.skill) : colRef;
+      colRef = params.searchBy ? colRef.where(params.searchBy, '==', params.searchText) : colRef;
       return colRef;
     });
   }
@@ -56,13 +56,16 @@ export class EmployeeService {
   }
 
   getEmployeesList(params: EmployeesFilters, isFullList: boolean) {
-    return this._getLimitedCollectionRef(params, isFullList).get().pipe(map((querySnapshot) => {
+    const getMethod = params.limit ? '_getLimitedCollectionRef' : '_getFilteredCollectionRef';
+    return this[getMethod](params, isFullList).get().pipe(map((querySnapshot) => {
       return this._getEmployeesList(querySnapshot);
     }));
   }
 
-  private _getEmployeesList(querySnapshot): Array<Employee> {
+  private _getEmployeesList(querySnapshot): any {
     const employeesList = [];
+    const docsList = querySnapshot.docs;
+    const lastVisibleDoc = docsList[docsList.length - 1];
     querySnapshot.forEach((employee) => {
       const employeeData = employee.data();
       employeesList.push({
@@ -71,7 +74,7 @@ export class EmployeeService {
         fullName: `${employeeData.firstName} ${employeeData.lastName}`
       });
     });
-    return employeesList;
+    return {employeesList, lastVisibleDoc};
   }
 
   getEmployeeById(employeeId: string) {
