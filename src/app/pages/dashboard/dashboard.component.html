@@ -8,6 +8,7 @@
   </div>
 
   <app-employees-filters class="dashboard__filters"
+                         [initFilters]="initFiltersParams"
                          (filtersReset)="resetFilters($event)"
                          (filtersChanged)="applyFilters($event)"></app-employees-filters>
 
@@ -28,7 +29,7 @@
     <app-employees-list [employeesList]="employeesList"
                         class="dashboard__employees"></app-employees-list>
 
-    <div *ngIf="lastVisibleDoc"
+    <div *ngIf="showLoadMoreBtn"
          class="dashboard__load-more-cont">
       <button mat-raised-button
               color="accent"
