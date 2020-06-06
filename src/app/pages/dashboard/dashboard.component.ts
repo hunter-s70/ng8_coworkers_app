@@ -63,7 +63,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.employeesPerPage = 1;
+    this.employeesPerPage = 15;
     this._getAllEmployees();
   }
 
