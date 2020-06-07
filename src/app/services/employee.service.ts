@@ -103,7 +103,9 @@ export class EmployeeService {
         isActive,
         createdAt,
         updatedAt,
-        bio
+        bio,
+        telegramLink,
+        cvLink,
       } = doc.data();
       employee = new Employee(
         firstName,
@@ -117,7 +119,9 @@ export class EmployeeService {
         isActive,
         createdAt,
         updatedAt,
-        bio);
+        bio,
+        telegramLink,
+        cvLink);
     }
     return employee;
   }

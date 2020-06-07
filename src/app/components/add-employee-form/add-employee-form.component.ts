@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Employee } from '../../classes/employee';
+import { Constants } from '../../classes/constants';
 import { SelectItem } from '../../interfaces/select-item';
 import { EmployeeService } from '../../services/employee.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
@@ -21,6 +22,8 @@ export class AddEmployeeFormComponent implements OnInit {
   @Output() saveData = new EventEmitter<object>();
 
   employeeFrom: FormGroup;
+  telegramLinkPrefix = Constants.TELEGRAM_LINK_PREFIX;
+  telegramNicknamePattern = { T: { pattern: new RegExp('\[a-z0-9_\]')} };
 
   get saveFormText(): string {
     return this.submitBtnText || 'Add employee';
@@ -53,6 +56,8 @@ export class AddEmployeeFormComponent implements OnInit {
       lastName: [this.employee.lastName, [Validators.required, Validators.maxLength(20)]],
       email: [this.employee.email, [Validators.required, Validators.email, Validators.maxLength(50)]],
       bio: [this.employee.bio, [Validators.maxLength(800)]],
+      telegramLink: [this.employee.telegramLink, [Validators.minLength(5), Validators.maxLength(80)]],
+      cvLink: [this.employee.cvLink, [Validators.maxLength(300)]],
       positionId: [this.employee.positionId, [Validators.required]],
       birthday: [this.employee.getBirthday(), [Validators.required]],
       firstday: [this.employee.getFirstday(), [Validators.required]],

@@ -6,6 +6,7 @@ import { AppRoutingModule } from './routing/app-routing.module';
 import { AppFirebaseModule } from './modules/firebase/app-firebase.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './modules/material/app-material.module';
+import { AppInputMaskModule } from './modules/input-mask/app-input-mask.module';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -60,7 +61,8 @@ import { EmployeesFiltersComponent } from './components/employees-filters/employ
     AppMaterialModule,
     MatMomentDateModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppInputMaskModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

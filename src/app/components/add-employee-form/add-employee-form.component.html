@@ -65,6 +65,21 @@
            required>
   </mat-form-field>
 
+  <mat-form-field class="employee-form__field employee-form__field--half-width">
+    <input matInput
+           formControlName="telegramLink"
+           [patterns]="telegramNicknamePattern"
+           [prefix]="telegramLinkPrefix"
+           mask="T*"
+           placeholder="Telegram link">
+  </mat-form-field>
+
+  <mat-form-field class="employee-form__field employee-form__field--half-width">
+    <input matInput
+           formControlName="cvLink"
+           placeholder="CV link">
+  </mat-form-field>
+
   <app-tags-list [items]="skills"
                  [selectedItems]="employee.skillsList"
                  [placeholderText]="'Add skill...'"

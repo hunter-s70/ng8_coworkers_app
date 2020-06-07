@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { Constants } from './constants';
 
 export class Employee {
   constructor(
@@ -14,12 +15,15 @@ export class Employee {
     public createdAt: string = moment().toString(),
     public updatedAt: moment.Moment = moment(),
     public bio?: string,
+    public telegramLink?: string,
+    public cvLink?: string,
   ) { }
 
   genEmployeeDataObject(formData): object {
     return {
       ...this,
       ...formData,
+      telegramLink: formData.telegramLink ? `${Constants.TELEGRAM_LINK_PREFIX}${formData.telegramLink}` : null,
       birthday: formData.birthday.toString(),
       firstday: formData.firstday.toString(),
       updatedAt: moment().toString(),
