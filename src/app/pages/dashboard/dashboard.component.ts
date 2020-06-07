@@ -27,7 +27,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   isFullList: boolean;
 
   get showLoadMoreBtn(): boolean {
-    return !!(this.lastVisibleDoc && !Object.keys(this.initFiltersParams).length);
+    return !!(this.lastVisibleDoc && !this.hasRouteQuery);
+  }
+
+  get hasRouteQuery(): boolean {
+    return !!Object.keys(this.initFiltersParams).length;
   }
 
   applyFilters(params: EmployeesFilters): void {
@@ -41,7 +45,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   resetFilters(): void {
-    this._getAllEmployees();
+    this.router.navigate(['/app/home'], {});
   }
 
   loadMoreEmployees(): void {
@@ -87,11 +91,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.initFiltersParams = {};
     this.isFullList = this.authService.isAdmin;
 
-    this._getAllEmployees();
-
     this.route.queryParams.subscribe(params => {
       this.initFiltersParams = params;
-      this._getFilteredEmployees(params);
+      if (this.hasRouteQuery) {
+        this._getFilteredEmployees(params);
+      } else {
+        this._getAllEmployees();
+      }
     });
   }
 
