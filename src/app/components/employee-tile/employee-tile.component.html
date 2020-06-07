@@ -1,4 +1,5 @@
 <a [routerLink]="['/app/employee', employee.id]"
+   [ngClass]="{'employee-tile--inactive': !employee.isActive}"
    class="employee-tile">
   <app-avatar [avatar]="employee.userPhoto"
               class="employee-tile__avatar"></app-avatar>
