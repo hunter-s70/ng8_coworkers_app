@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { EmployeeService } from '../../services/employee.service';
+import { Constants } from '../../classes/constants';
 import { Subscription } from 'rxjs';
 import { EmployeesFilters } from '../../interfaces/employees-filters';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -27,7 +28,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   isFullList: boolean;
 
   get showLoadMoreBtn(): boolean {
-    return !!(this.lastVisibleDoc && !this.hasRouteQuery);
+    return !!(this.lastVisibleDoc && !this.hasRouteQuery && this.employeesList.length >= Constants.EMPLOYEES_PER_PAGE);
   }
 
   get hasRouteQuery(): boolean {
@@ -85,7 +86,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.employeesPerPage = 15;
+    this.employeesPerPage = Constants.EMPLOYEES_PER_PAGE;
     this.employeesList = [];
     this.lastVisibleDoc = '';
     this.initFiltersParams = {};
