@@ -6,12 +6,16 @@
       <app-avatar [avatar]="employee.userPhoto"
                   class="show-employee__avatar"></app-avatar>
       <div class="show-employee__data-cont">
-        <p class="show-employee__info">{{ ems.getPositionNameById(employee.positionId) }}</p>
-        <p class="show-employee__info">{{ employee.email }}</p>
-        <p class="show-employee__info">{{ employee.birthday }}</p>
-        <p class="show-employee__info">{{ employee.firstday }}</p>
-        <p class="show-employee__info">{{ employee.skillsList }}</p>
-        <p class="show-employee__info">{{ employee.bio }}</p>
+        <div *ngFor="let item of dataList"
+             class="show-employee__data">
+          <ng-template [ngIf]="item.data">
+            <p class="show-employee__data-title"
+               [innerHTML]="item.title"></p>
+            <p [ngClass]="{'show-employee__data-content--skills': item.class}"
+               class="show-employee__data-content"
+               [innerHTML]="item.data"></p>
+          </ng-template>
+        </div>
       </div>
     </div>
   </ng-template>

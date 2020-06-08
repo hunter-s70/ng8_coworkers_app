@@ -13,3 +13,22 @@
   width: 100%;
   padding: 0 40px;
 }
+
+.show-employee__data {
+  padding: 0 10px;
+  margin-bottom: 15px;
+}
+
+.show-employee__data-title {
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.show-employee__data-content {
+  font-size: 14px;
+}
+
+.show-employee__data-content--skills {
+  margin-left: -4px;
+}

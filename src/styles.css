@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: #404040;}
 * { box-sizing: border-box; }
 
 .page-wrapper {
@@ -11,5 +11,21 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .page-title {
   margin-bottom: 20px;
+  font-size: 20px;
   font-weight: bold;
+}
+
+.skill-clip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  height: 1px;
+  margin: 4px;
+  padding: 7px 10px;
+  border-radius: 16px;
+  background-color: #e0e0e0;
+  color: rgba(0,0,0,.87);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: default;
 }
