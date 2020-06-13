@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTabsModule } from '@angular/material/tabs';
 
 const modulesList = [
   MatButtonModule,
@@ -20,6 +21,7 @@ const modulesList = [
   MatChipsModule,
   MatAutocompleteModule,
   MatSlideToggleModule,
+  MatTabsModule,
 ];
 
 @NgModule({

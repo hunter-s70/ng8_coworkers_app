@@ -1,1 +1,41 @@
-<p>skills-manager works!</p>
+<div class="skills-manager page-wrapper">
+  <h1 class="skills-manager__title page-title">Manage employees available skills</h1>
+
+  <mat-tab-group class="skills-manager__tabs">
+
+    <mat-tab label="Skills">
+      <section class="skills-manager__tab-content">
+        <form [formGroup]="skillsFrom">
+          <button mat-raised-button color="accent" (click)="addEmptySkill()">
+            Add skill
+          </button>
+
+          <div *ngFor="let skill of skills; let i = index"
+               class="skills-manager__skill">
+            <mat-form-field floatLabel="never" class="skills-manager__field">
+              <input matInput
+                     [formControlName]="skill"
+                     placeholder="Skill"
+                     required>
+            </mat-form-field>
+
+            <button mat-icon-button color="accent">
+              <mat-icon>save</mat-icon>
+            </button>
+            <button mat-icon-button color="warn">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </form>
+      </section>
+    </mat-tab>
+
+
+    <mat-tab label="Positions">
+      <section class="skills-manager__tab-content">
+        Positions
+      </section>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>
