@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { SelectItem } from '../../interfaces/select-item';
-import { EmployeeService } from '../../services/employee.service';
+import { SkillsDataService } from '../../services/skills-data.service';
 import { EmployeesFilters } from '../../interfaces/employees-filters';
 
 @Component({
@@ -11,7 +11,7 @@ import { EmployeesFilters } from '../../interfaces/employees-filters';
 export class EmployeesFiltersComponent implements OnInit {
 
   constructor(
-    private ems: EmployeeService,
+    private skds: SkillsDataService,
   ) { }
 
   @Input() initFilters: EmployeesFilters;
@@ -43,11 +43,11 @@ export class EmployeesFiltersComponent implements OnInit {
   }
 
   get positions(): SelectItem[] {
-    return this.ems.positions || [];
+    return this.skds.positions || [];
   }
 
   get skillsList(): string[] {
-    return this.ems.skills || [];
+    return this.skds.skills || [];
   }
 
   applyFilters(): void {

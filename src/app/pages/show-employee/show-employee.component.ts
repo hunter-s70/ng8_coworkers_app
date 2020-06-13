@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Employee } from '../../classes/employee';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { EmployeeService } from '../../services/employee.service';
+import { SkillsDataService } from '../../services/skills-data.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -13,6 +14,7 @@ export class ShowEmployeeComponent implements OnInit, OnDestroy {
 
   constructor(
     private ems: EmployeeService,
+    private skds: SkillsDataService,
     private route: ActivatedRoute,
     public router: Router,
   ) { }
@@ -27,12 +29,10 @@ export class ShowEmployeeComponent implements OnInit, OnDestroy {
   }
 
   get dataList(): any[] {
-    const employeeData = this.employee || {};
-    console.log(this.employee.skillsList.join('; '));
     return [
       {
         title: 'Position',
-        data: this.ems.getPositionNameById(this.employee.positionId),
+        data: this.skds.getPositionNameById(this.employee.positionId),
       },
       {
         title: 'Skills',

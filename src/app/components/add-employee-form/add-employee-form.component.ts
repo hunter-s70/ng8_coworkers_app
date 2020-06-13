@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Employee } from '../../classes/employee';
 import { Constants } from '../../classes/constants';
 import { SelectItem } from '../../interfaces/select-item';
-import { EmployeeService } from '../../services/employee.service';
+import { SkillsDataService } from '../../services/skills-data.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
@@ -14,7 +14,7 @@ export class AddEmployeeFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private ems: EmployeeService,
+    private skds: SkillsDataService,
   ) { }
 
   @Input() employee: Employee;
@@ -30,11 +30,11 @@ export class AddEmployeeFormComponent implements OnInit {
   }
 
   get positions(): SelectItem[] {
-    return this.ems.positions || [];
+    return this.skds.positions || [];
   }
 
   get skills(): string[] {
-    return this.ems.skills || [];
+    return this.skds.skills || [];
   }
 
   addNewEmployee(): void {

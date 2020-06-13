@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Employee } from '../../classes/employee';
-import { EmployeeService } from '../../services/employee.service';
+import { SkillsDataService } from '../../services/skills-data.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
 export class EmployeeTileComponent implements OnInit {
 
   constructor(
-    private ems: EmployeeService,
+    private skds: SkillsDataService,
     public authService: AuthService,
   ) { }
 
