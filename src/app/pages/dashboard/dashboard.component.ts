@@ -3,8 +3,9 @@ import { AuthService } from '../../services/auth.service';
 import { EmployeeService } from '../../services/employee.service';
 import { Constants } from '../../classes/constants';
 import { Subscription } from 'rxjs';
-import { EmployeesFilters } from '../../interfaces/employees-filters';
+import { EmployeesFiltersInterface } from '../../interfaces/employees-filters-interface';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AngularFirestoreDocument } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,12 +21,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
     public router: Router,
   ) { }
 
-  employeeData: Subscription;
+  employeesList: object[];
   employeesPerPage: number;
-  employeesList: any[];
-  lastVisibleDoc: any;
-  initFiltersParams: object;
   isFullList: boolean;
+  employeeData: Subscription;
+  lastVisibleDoc: AngularFirestoreDocument;
+  initFiltersParams: EmployeesFiltersInterface;
 
   get showLoadMoreBtn(): boolean {
     return !!(this.lastVisibleDoc && !this.hasRouteQuery && this.employeesList.length >= Constants.EMPLOYEES_PER_PAGE);
@@ -35,14 +36,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return !!Object.keys(this.initFiltersParams).length;
   }
 
-  applyFilters(params: EmployeesFilters): void {
+  applyFilters(filters: EmployeesFiltersInterface): void {
+    const queryParams = this._getFiltersQueryParams(filters);
+    this.router.navigate(['/app/home'], {queryParams});
+  }
+
+  private _getFiltersQueryParams(filters: EmployeesFiltersInterface) {
     const queryParams = {};
-    for (const key of Object.keys(params)) {
-      if (params[key]) {
-        queryParams[key] = params[key];
+    for (const key of Object.keys(filters)) {
+      if (filters[key]) {
+        queryParams[key] = filters[key];
       }
     }
-    this.router.navigate(['/app/home'], {queryParams});
+    return queryParams;
   }
 
   resetFilters(): void {
@@ -52,7 +58,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
   loadMoreEmployees(): void {
     this._checkSubscription();
     this.employeeData = this.ems
-      .getEmployeesList({startAfter: this.lastVisibleDoc, limit: this.employeesPerPage}, this.isFullList)
+      .getEmployeesList(
+        {lastVisibleDoc: this.lastVisibleDoc, limit: this.employeesPerPage},
+        this.isFullList
+      )
       .subscribe(({employeesList, lastVisibleDoc}) => {
         this.employeesList = [...this.employeesList, ...employeesList];
         this.lastVisibleDoc = lastVisibleDoc;
@@ -68,17 +77,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private _getAllEmployees(): void {
     this._checkSubscription();
     this.employeeData = this.ems
-      .getEmployeesList({limit: this.employeesPerPage}, this.isFullList)
+      .getEmployeesList(
+        {limit: this.employeesPerPage},
+        this.isFullList
+      )
       .subscribe(({employeesList, lastVisibleDoc}) => {
         this.employeesList = employeesList;
         this.lastVisibleDoc = lastVisibleDoc;
       });
   }
 
-  private _getFilteredEmployees(params: EmployeesFilters): void {
+  private _getFilteredEmployees(filters: EmployeesFiltersInterface): void {
     this._checkSubscription();
     this.employeeData = this.ems
-      .getEmployeesList(params, this.isFullList)
+      .getEmployeesList(
+        filters,
+        this.isFullList
+      )
       .subscribe(({employeesList}) => {
         this.employeesList = employeesList;
         this.lastVisibleDoc = null;
@@ -87,15 +102,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.employeesPerPage = Constants.EMPLOYEES_PER_PAGE;
-    this.employeesList = [];
-    this.lastVisibleDoc = '';
-    this.initFiltersParams = {};
     this.isFullList = this.authService.isAdmin;
 
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       this.initFiltersParams = params;
       if (this.hasRouteQuery) {
-        this._getFilteredEmployees(params);
+        this._getFilteredEmployees(this.initFiltersParams);
       } else {
         this._getAllEmployees();
       }

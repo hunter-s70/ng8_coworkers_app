@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { SelectItem } from '../../interfaces/select-item';
 import { SkillsDataService } from '../../services/skills-data.service';
-import { EmployeesFilters } from '../../interfaces/employees-filters';
+import { EmployeesFilters } from '../../classes/employees-filters';
 
 @Component({
   selector: 'app-employees-filters',
@@ -18,28 +18,16 @@ export class EmployeesFiltersComponent implements OnInit {
   @Output() filtersChanged = new EventEmitter<object>();
   @Output() filtersReset = new EventEmitter<object>();
 
-  skillName: string;
-  positionId: string;
-  searchText: string;
-  searchBy: string;
+  filters: EmployeesFilters;
   searchByList: SelectItem[] = [
     {id: 'email', value: 'Email'},
     {id: 'lastName', value: 'Surname'},
   ];
 
   get searchByPlaceholderText(): string {
-    const searchByItem = this.searchByList.find((item) => item.id === this.searchBy);
+    const searchByItem = this.searchByList.find((item) => item.id === this.filters.searchBy);
     const searchByText = searchByItem ? searchByItem.value.toLowerCase() : '...';
     return `Search ${searchByText}`;
-  }
-
-  get filters(): object {
-    return {
-      searchBy: this.searchBy,
-      searchText: this.searchText,
-      positionId: this.positionId,
-      skillName: this.skillName,
-    };
   }
 
   get positions(): SelectItem[] {
@@ -60,17 +48,27 @@ export class EmployeesFiltersComponent implements OnInit {
   }
 
   clearFilters(): void {
-    this.searchBy = '';
-    this.searchText = '';
-    this.positionId = '';
-    this.skillName = '';
+    this.filters = new EmployeesFilters();
+  }
+
+  private _setInitialFilters() {
+    const {
+      searchBy,
+      searchText,
+      positionId,
+      skillName
+    } = this.initFilters;
+
+    this.filters = new EmployeesFilters(
+      searchBy,
+      searchText,
+      positionId,
+      skillName
+    );
   }
 
   ngOnInit() {
-    this.skillName = this.initFilters.skillName || '';
-    this.positionId = this.initFilters.positionId || '';
-    this.searchText = this.initFilters.searchText || '';
-    this.searchBy = this.initFilters.searchBy || '';
+    this._setInitialFilters();
   }
 
 }
