@@ -31,7 +31,7 @@ export class EmployeeService {
     return this.afs.collection('employees', (ref) => {
       let colRef = !isFullList ? ref.where('isActive', '==', true) : ref;
       colRef = params.positionId ? colRef.where('positionId', '==', params.positionId) : colRef;
-      colRef = params.skill ? colRef.where('skillsList', 'array-contains', params.skill) : colRef;
+      colRef = params.skillName ? colRef.where('skillsList', 'array-contains', params.skillName) : colRef;
       colRef = params.searchBy ? colRef.where(params.searchBy, '==', params.searchText) : colRef;
       return colRef;
     });

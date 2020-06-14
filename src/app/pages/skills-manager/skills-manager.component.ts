@@ -22,7 +22,7 @@ export class SkillsManagerComponent implements OnInit {
   }
 
   get skills(): string[] {
-    return this.skds.skills || [];
+    return this.skds.getSkillsValuesList() || [];
   }
 
   addEmptySkill() {

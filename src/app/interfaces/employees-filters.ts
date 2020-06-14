@@ -3,6 +3,6 @@ export interface EmployeesFilters {
   searchBy?: '';
   searchText?: '';
   positionId?: '';
-  skill?: '';
+  skillName?: '';
   startAfter?: '';
 }

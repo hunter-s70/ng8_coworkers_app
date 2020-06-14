@@ -34,7 +34,7 @@ export class AddEmployeeFormComponent implements OnInit {
   }
 
   get skills(): string[] {
-    return this.skds.skills || [];
+    return this.skds.getSkillsValuesList() || [];
   }
 
   addNewEmployee(): void {

@@ -18,7 +18,7 @@ export class EmployeesFiltersComponent implements OnInit {
   @Output() filtersChanged = new EventEmitter<object>();
   @Output() filtersReset = new EventEmitter<object>();
 
-  skill: string;
+  skillName: string;
   positionId: string;
   searchText: string;
   searchBy: string;
@@ -27,7 +27,7 @@ export class EmployeesFiltersComponent implements OnInit {
     {id: 'lastName', value: 'Surname'},
   ];
 
-  get searchByPlaceholder(): string {
+  get searchByPlaceholderText(): string {
     const searchByItem = this.searchByList.find((item) => item.id === this.searchBy);
     const searchByText = searchByItem ? searchByItem.value.toLowerCase() : '...';
     return `Search ${searchByText}`;
@@ -38,7 +38,7 @@ export class EmployeesFiltersComponent implements OnInit {
       searchBy: this.searchBy,
       searchText: this.searchText,
       positionId: this.positionId,
-      skill: this.skill,
+      skillName: this.skillName,
     };
   }
 
@@ -47,7 +47,7 @@ export class EmployeesFiltersComponent implements OnInit {
   }
 
   get skillsList(): string[] {
-    return this.skds.skills || [];
+    return this.skds.getSkillsValuesList() || [];
   }
 
   applyFilters(): void {
@@ -63,11 +63,11 @@ export class EmployeesFiltersComponent implements OnInit {
     this.searchBy = '';
     this.searchText = '';
     this.positionId = '';
-    this.skill = '';
+    this.skillName = '';
   }
 
   ngOnInit() {
-    this.skill = this.initFilters.skill || '';
+    this.skillName = this.initFilters.skillName || '';
     this.positionId = this.initFilters.positionId || '';
     this.searchText = this.initFilters.searchText || '';
     this.searchBy = this.initFilters.searchBy || '';

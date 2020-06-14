@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { SelectItem } from '../interfaces/select-item';
 import { Subscription } from 'rxjs';
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -12,32 +13,44 @@ export class SkillsDataService {
     private afs: AngularFirestore,
   ) { }
 
-  skills: string[] = [];
+  skills: SelectItem[] = [];
   positions: SelectItem[] = [];
 
-  private _getSelectorsRef(): AngularFirestoreCollection<any> {
-    return this.afs.collection('selectors');
+  private _getCollectionRef(collectionName): AngularFirestoreCollection<any> {
+    return this.afs.collection(collectionName, (ref) => {
+      return ref.orderBy('value');
+    });
   }
 
+  private _getDocsList(querySnapshot): any {
+    return querySnapshot.docs.map((doc) => doc.data());
+  }
+
+
   getSkillsList(): Subscription {
-    const skillsRef: AngularFirestoreDocument<any> = this._getSelectorsRef().doc('skills');
-    return skillsRef.get().subscribe((doc) => {
-      this.skills = doc.data().list;
-    });
+    return this._getCollectionRef('skills')
+      .get()
+      .pipe(map((querySnapshot) => this._getDocsList(querySnapshot)))
+      .subscribe((skills) => {
+        this.skills = skills || [];
+      });
+  }
+
+  getSkillsValuesList() {
+    return this.skills.map((skill) => skill.value);
   }
 
   getPositionsList(): Subscription {
-    const positionsRef: AngularFirestoreDocument<any> = this._getSelectorsRef().doc('positions');
-    return positionsRef.get().subscribe((doc) => {
-      this.positions = doc.data().list;
-    });
+    return this._getCollectionRef('positions')
+      .get()
+      .pipe(map((querySnapshot) => this._getDocsList(querySnapshot)))
+      .subscribe((positions) => {
+        this.positions = positions || [];
+      });
   }
 
   getPositionNameById(positionId: string): string {
-    if (this.positions && this.positions.length) {
-      const position = this.positions.find((pos) => pos.id === positionId);
-      return position.value || '';
-    }
-    return '';
+    const position = this.positions.find((pos) => pos.id === positionId);
+    return position ? position.value : '';
   }
 }
