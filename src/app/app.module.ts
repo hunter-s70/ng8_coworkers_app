@@ -32,7 +32,6 @@ import { EmployeesListComponent } from './components/employees-list/employees-li
 import { ShowEmployeeComponent } from './pages/show-employee/show-employee.component';
 import { LoggedInRootComponent } from './pages/logged-in-root/logged-in-root.component';
 import { EmployeesFiltersComponent } from './components/employees-filters/employees-filters.component';
-import { SkillsManagerComponent } from './pages/skills-manager/skills-manager.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +52,6 @@ import { SkillsManagerComponent } from './pages/skills-manager/skills-manager.co
     ShowEmployeeComponent,
     LoggedInRootComponent,
     EmployeesFiltersComponent,
-    SkillsManagerComponent,
   ],
   imports: [
     BrowserModule,
