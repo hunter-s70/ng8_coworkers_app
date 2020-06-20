@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Employee } from '../../classes/employee';
 import { SkillsDataService } from '../../services/skills-data.service';
 import { AuthService } from '../../services/auth.service';
 
@@ -11,11 +10,11 @@ import { AuthService } from '../../services/auth.service';
 export class EmployeeTileComponent implements OnInit {
 
   constructor(
-    private skds: SkillsDataService,
+    public skds: SkillsDataService,
     public authService: AuthService,
   ) { }
 
-  @Input() employee: Employee;
+  @Input() employee: any;
 
   ngOnInit() {
   }
