@@ -23,7 +23,6 @@ export class Employee {
     return {
       ...this,
       ...formData,
-      telegramLink: formData.telegramLink ? `${Constants.TELEGRAM_LINK_PREFIX}${formData.telegramLink}` : null,
       birthday: formData.birthday.toString(),
       firstday: formData.firstday.toString(),
       updatedAt: moment().toString(),
