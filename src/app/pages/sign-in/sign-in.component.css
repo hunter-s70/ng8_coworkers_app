@@ -1,0 +1,30 @@
+.sign-in {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  padding: 10px;
+}
+
+.sign-in__form {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: auto;
+  padding: 20px 15px;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.sign-in__field {
+  width: 100%;
+}
+
+.sign-in__btn-cont {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
