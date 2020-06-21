@@ -15,16 +15,16 @@
   <div class="dashboard__content">
 
     <!-- Show user data when logged in -->
-    <div class="row" *ngIf="authService.userData as user">
-      <div class="col-md-12">
-        <div class="media">
-          <div class="media-body">
-            <p>User ID: <strong>{{user.uid}}</strong></p>
-            <p>Email: <strong>{{user.email}}</strong></p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!--<div class="row" *ngIf="authService.userData as user">-->
+      <!--<div class="col-md-12">-->
+        <!--<div class="media">-->
+          <!--<div class="media-body">-->
+            <!--<p>User ID: <strong>{{user.uid}}</strong></p>-->
+            <!--<p>Email: <strong>{{user.email}}</strong></p>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
 
     <app-employees-list [employeesList]="employeesList"
                         class="dashboard__employees"></app-employees-list>

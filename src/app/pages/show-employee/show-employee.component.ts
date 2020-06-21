@@ -3,6 +3,7 @@ import { Employee } from '../../classes/employee';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { EmployeeService } from '../../services/employee.service';
 import { SkillsDataService } from '../../services/skills-data.service';
+import { Constants } from '../../classes/constants';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -28,6 +29,10 @@ export class ShowEmployeeComponent implements OnInit, OnDestroy {
     return this.employee ? `${this.employee.firstName} ${this.employee.lastName}` : '';
   }
 
+  get telegramFullLink(): string {
+    return this.employee ? `${Constants.TELEGRAM_LINK_PREFIX}${this.employee.telegramLink}` : '';
+  }
+
   get dataList(): any[] {
     return [
       {
@@ -46,7 +51,7 @@ export class ShowEmployeeComponent implements OnInit, OnDestroy {
       {
         title: 'Telegram link',
         data: this.employee.telegramLink ?
-          `<a href="${this.employee.telegramLink}" target="_blank">${this.employee.telegramLink}</a>` :
+          `<a href="${this.telegramFullLink}" target="_blank">${this.telegramFullLink}</a>` :
           '',
       },
       {
