@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-sign-in',
@@ -14,7 +13,6 @@ export class SignInComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('environments here4: ', environment);
   }
 
 }
