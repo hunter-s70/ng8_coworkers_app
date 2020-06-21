@@ -2,11 +2,11 @@ export const environment = {
   production: true,
   firebase: {
     apiKey: process.env.FBS_API_KEY,
-    authDomain: 'coworkers-cc0e8.firebaseapp.com',
+    authDomain: process.env.FBS_AUTH_DOMAIN,
     databaseURL: process.env.FBS_DB_URL,
-    projectId: 'coworkers-cc0e8',
+    projectId: process.env.FBS_PROJECT_ID,
     storageBucket: process.env.FBS_STORAGE_BUCKET,
-    messagingSenderId: '863499174126',
-    appId: '1:863499174126:web:881db15f14928374aff3ff'
+    messagingSenderId: process.env.FBS_MES_SENDER_ID,
+    appId: process.env.FBS_APP_ID
   }
 };
