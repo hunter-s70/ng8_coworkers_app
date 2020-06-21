@@ -4,7 +4,6 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        KEY: JSON.stringify(process.env.KEY),
         FBS_API_KEY: JSON.stringify(process.env.FBS_API_KEY),
         FBS_AUTH_DOMAIN: JSON.stringify(process.env.FBS_AUTH_DOMAIN),
         FBS_DB_URL: JSON.stringify(process.env.FBS_DB_URL),
