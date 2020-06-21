@@ -1,5 +1,4 @@
 import moment from 'moment';
-import { Constants } from './constants';
 
 export class Employee {
   constructor(
