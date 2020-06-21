@@ -14,10 +14,7 @@ export class SignInComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('environments here1: ', process.env.FBS_API_KEY);
-    console.log('environments here2: ', process.env);
     console.log('environments here4: ', environment);
-    console.log('environments here5: ', environment.firebase);
   }
 
 }
