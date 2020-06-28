@@ -5,6 +5,7 @@ interface Process {
 }
 
 interface Env {
+  NODE_ENV: string;
   FBS_API_KEY: string;
   FBS_AUTH_DOMAIN: string;
   FBS_DB_URL: string;
