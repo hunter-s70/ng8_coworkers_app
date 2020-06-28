@@ -14,11 +14,7 @@
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "customWebpackConfig": {
-              "path": "extra-webpack.config.js",
-              "mergeStrategies": {
-                "module.plugins": "prepend"
-              },
-              "replaceDuplicatePlugins": true
+              "path": "extra-webpack.config.js"
             },
             "outputPath": "dist/coworkers",
             "index": "src/index.html",
