@@ -4,7 +4,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Demo: 
 
-https://app-coworkers.herokuapp.com/
+https://app-coworkers.herokuapp.com/ (heroku-app https://github.com/hunter-s70/ng8_coworkers_app/tree/heroku-master)
+
+https://coworkers-cc0e8.web.app/ (firebase-app)
 
 ## Development server
 
