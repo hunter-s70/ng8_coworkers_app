@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 
+// define env variables
 module.exports = {
   plugins: [
     new webpack.DefinePlugin({
