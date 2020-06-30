@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from '../../interfaces/select-item';
 import { SkillsDataService } from '../../services/skills-data.service';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-skills-manager',
@@ -11,11 +10,8 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 export class SkillsManagerComponent implements OnInit {
 
   constructor(
-    private fb: FormBuilder,
     private skds: SkillsDataService,
   ) { }
-
-  skillsFrom: FormGroup;
 
   get positions(): SelectItem[] {
     return this.skds.positions || [];
@@ -25,20 +21,12 @@ export class SkillsManagerComponent implements OnInit {
     return this.skds.skills || [];
   }
 
-  addEmptySkill() {
-    console.log(this.skillsFrom.value);
-  }
-
-  genSkillsForm() {
-    const formSettings = {};
-    this.skills.forEach((item) => {
-      formSettings[item.id] = [item.value, [Validators.required, Validators.maxLength(50)]];
-    });
-    return this.fb.group(formSettings);
+  exportSkills() {
+    console.log('export here');
+    console.log(this.skills);
   }
 
   ngOnInit() {
-    this.skillsFrom = this.genSkillsForm();
   }
 
 }

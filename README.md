@@ -35,3 +35,11 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Firebase project setup
+`firebase init`
+
+## Cloud functions local testing
+
+1. set up admin sdk https://stackoverflow.com/a/59238144
+2. start emulation `firebase emulators:start`
