@@ -5,28 +5,11 @@
 
     <mat-tab label="Skills">
       <section class="skills-manager__tab-content">
-        <form [formGroup]="skillsFrom">
-          <button mat-raised-button color="accent" (click)="addEmptySkill()">
-            Add skill
-          </button>
-
-          <div *ngFor="let skill of skills; let i = index"
-               class="skills-manager__skill">
-            <mat-form-field floatLabel="never" class="skills-manager__field">
-              <input matInput
-                     [formControlName]="skill.id"
-                     placeholder="Skill"
-                     required>
-            </mat-form-field>
-
-            <button mat-icon-button color="accent">
-              <mat-icon>save</mat-icon>
-            </button>
-            <button mat-icon-button color="warn">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </div>
-        </form>
+        <button mat-raised-button
+                color="accent"
+                (click)="exportSkills()">
+          Export skills
+        </button>
       </section>
     </mat-tab>
 
