@@ -18,9 +18,11 @@ admin.initializeApp({
 exports.exportSkills = functions.https.onRequest(async (req, res) => {
   const collectionsList = Object.keys(req.query);
   const exportedData = {};
-  for (let i = 0; i < collectionsList.length; i++) {
-    const querySnapshot = await admin.firestore().collection(collectionsList[i]).get();
-    exportedData[collectionsList[i]] = querySnapshot.docs.map((doc) => doc.data());
-  }
+  const promises = collectionsList.map(collection => {
+    return admin.firestore().collection(collection).get().then(querySnapshot => {
+      exportedData[collection] = querySnapshot.docs.map((doc) => doc.data());
+    });
+  });
+  await Promise.all(promises);
   res.json(exportedData);
 });
