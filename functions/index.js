@@ -1,6 +1,7 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const serviceAccount = require('./coworkers-cc0e8-firebase-adminsdk-i16n6-ce7881ca56.json');
+const cors = require('cors')({ origin: true });
 
 // Create and Deploy Your First Cloud Functions
 // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -24,5 +25,7 @@ exports.exportSkills = functions.https.onRequest(async (req, res) => {
     });
   });
   await Promise.all(promises);
-  res.json(exportedData);
+  cors(req, res, () => {
+    res.json(exportedData);
+  });
 });
