@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 // separate modules
 import { AppRoutingModule } from './routing/app-routing.module';
@@ -65,6 +66,7 @@ import { SkillsManagerComponent } from './pages/skills-manager/skills-manager.co
     FormsModule,
     ReactiveFormsModule,
     AppInputMaskModule,
+    HttpClientModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
