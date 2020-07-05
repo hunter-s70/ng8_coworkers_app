@@ -10,6 +10,10 @@
                 (click)="exportSkills()">
           Export skills
         </button>
+        <a *ngIf="exportedFileUrl"
+           [href]="exportedFileUrl"
+           class="skills-manager__exported-link"
+           download>Click to download exported data</a>
       </section>
     </mat-tab>
 
