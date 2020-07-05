@@ -1,6 +1,6 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
-const serviceAccount = require('../coworkers-cc0e8-firebase-adminsdk-i16n6-ce7881ca56.json');
+const serviceAccount = require('./coworkers-cc0e8-firebase-adminsdk-i16n6-ce7881ca56.json');
 
 // Create and Deploy Your First Cloud Functions
 // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -20,7 +20,7 @@ exports.exportSkills = functions.https.onRequest(async (req, res) => {
   const exportedData = {};
   const promises = collectionsList.map(collection => {
     return admin.firestore().collection(collection).get().then(querySnapshot => {
-      exportedData[collection] = querySnapshot.docs.map((doc) => doc.data());
+      return exportedData[collection] = querySnapshot.docs.map((doc) => doc.data());
     });
   });
   await Promise.all(promises);
