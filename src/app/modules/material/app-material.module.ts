@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 
+// npm file-input-material component
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -22,6 +25,7 @@ const modulesList = [
   MatAutocompleteModule,
   MatSlideToggleModule,
   MatTabsModule,
+  NgxMatFileInputModule,
 ];
 
 @NgModule({
