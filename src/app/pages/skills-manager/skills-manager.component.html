@@ -3,7 +3,23 @@
 
   <mat-tab-group class="skills-manager__tabs">
 
-    <mat-tab label="Skills">
+    <mat-tab label="Import">
+      <section class="skills-manager__tab-content">
+        <mat-form-field>
+          <ngx-mat-file-input [formControl]="fileControl" [multiple]="multiple" [accept]="accept" [color]="color">
+          </ngx-mat-file-input>
+        </mat-form-field>
+        <div>
+          <button mat-raised-button
+                  color="accent"
+                  (click)="importSkills()">
+            Import skills
+          </button>
+        </div>
+      </section>
+    </mat-tab>
+
+    <mat-tab label="Export">
       <section class="skills-manager__tab-content">
         <button mat-raised-button
                 color="accent"
@@ -14,13 +30,6 @@
            [href]="exportedFileUrl"
            class="skills-manager__exported-link"
            download>Click to download exported data</a>
-      </section>
-    </mat-tab>
-
-
-    <mat-tab label="Positions">
-      <section class="skills-manager__tab-content">
-        Positions
       </section>
     </mat-tab>
 

@@ -1,4 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
+import { FormControl, Validators } from '@angular/forms';
+import { AcceptValidator, MaxSizeValidator } from '@angular-material-components/file-input';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { SelectItem } from '../../interfaces/select-item';
@@ -14,7 +17,21 @@ export class SkillsManagerComponent implements OnInit, OnDestroy {
   constructor(
     private sanitizer: DomSanitizer,
     private skds: SkillsDataService,
-  ) { }
+  ) {
+    this.fileControl = new FormControl(this.files, [
+      Validators.required,
+      MaxSizeValidator(this.maxSize * 1024)
+    ]);
+  }
+
+  public files;
+  color: ThemePalette = 'primary';
+  disabled = false;
+  multiple = false;
+  accept = 'application/json';
+  maxSize = 16;
+  fileControl: FormControl;
+  fileData: Subscription;
 
   downloadLink: SafeUrl;
   exportedData: Subscription;
@@ -38,11 +55,25 @@ export class SkillsManagerComponent implements OnInit, OnDestroy {
     });
   }
 
+  importSkills() {
+    console.log('import');
+    console.log(this.fileControl);
+    console.log(this.files);
+  }
+
   ngOnInit() {
+    this.fileData = this.fileControl.valueChanges.subscribe((files: any) => {
+      if (!Array.isArray(files)) {
+        this.files = [files];
+      } else {
+        this.files = files;
+      }
+    });
   }
 
   ngOnDestroy() {
     this.exportedData.unsubscribe();
+    this.fileData.unsubscribe();
   }
 
 }
