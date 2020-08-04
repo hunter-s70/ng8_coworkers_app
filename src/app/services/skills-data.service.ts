@@ -59,4 +59,25 @@ export class SkillsDataService {
   exportUserSkillsData() {
     return this.http.get('https://us-central1-coworkers-cc0e8.cloudfunctions.net/exportSkills?skills=true&positions=true');
   }
+
+  importUserSkillsData(file) {
+    console.log('import');
+    console.log(file);
+    // const positionsRef = this._getCollectionRef('positions');
+    const reader = new FileReader();
+    const fileBlob = new Blob(file);
+    reader.readAsText(fileBlob);
+
+    reader.onload = () => {
+      const result = JSON.parse(reader.result);
+      console.log(result.positions);
+    };
+
+    reader.onerror = () => {
+      console.log(reader.error);
+    };
+    // return positionsRef.set(userData, {
+    //   merge: true
+    // });
+  }
 }
