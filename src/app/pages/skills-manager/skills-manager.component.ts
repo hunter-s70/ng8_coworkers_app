@@ -56,9 +56,7 @@ export class SkillsManagerComponent implements OnInit, OnDestroy {
   }
 
   importSkills() {
-    console.log('import');
-    console.log(this.fileControl);
-    console.log(this.files);
+    this.skds.importUserSkillsData(this.files);
   }
 
   ngOnInit() {
