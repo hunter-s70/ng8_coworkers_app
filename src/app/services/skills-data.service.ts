@@ -61,11 +61,15 @@ export class SkillsDataService {
   }
 
   importUserSkillsData(data) {
-    console.log(data);
-    // const positionsRef = this._getCollectionRef('positions');
-    // return positionsRef.set(userData, {
-    //   merge: true
-    // });
+    const batch = this.afs.firestore.batch();
+    let documentRef: any;
+    data.positions.forEach((item) => {
+      documentRef = this.afs.firestore.collection('positions').doc(item.id);
+      batch.set(documentRef, item);
+    });
+    batch.commit().then(() => {
+      console.log('success');
+    });
   }
 
   getFileData(file) {
