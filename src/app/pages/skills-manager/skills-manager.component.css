@@ -1,3 +1,11 @@
 .skills-manager__tab-content {
   padding: 20px 0;
 }
+
+.skills-manager__import-tip b {
+  font-weight: bold;
+}
+
+.skills-manager__export-btn {
+  margin-right: 20px;
+}
