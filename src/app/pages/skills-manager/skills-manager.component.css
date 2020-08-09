@@ -6,6 +6,10 @@
   font-weight: bold;
 }
 
+.skills-manager__progress {
+  margin-bottom: 20px;
+}
+
 .skills-manager__export-btn {
   margin-right: 20px;
 }

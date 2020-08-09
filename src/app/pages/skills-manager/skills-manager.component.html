@@ -27,6 +27,9 @@
     <!-- EXPORT TAB -->
     <mat-tab label="Export">
       <section class="skills-manager__tab-content">
+        <mat-progress-bar *ngIf="isProgressActive"
+                          class="skills-manager__progress"
+                          mode="indeterminate"></mat-progress-bar>
         <button mat-raised-button
                 color="accent"
                 class="skills-manager__export-btn"

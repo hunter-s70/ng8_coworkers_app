@@ -13,6 +13,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 const modulesList = [
   MatButtonModule,
@@ -26,6 +27,7 @@ const modulesList = [
   MatSlideToggleModule,
   MatTabsModule,
   NgxMatFileInputModule,
+  MatProgressBarModule,
 ];
 
 @NgModule({
