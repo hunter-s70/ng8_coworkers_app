@@ -20,7 +20,8 @@ export class SkillsManagerComponent implements OnInit, OnDestroy {
   ) {
     this.fileControl = new FormControl(this.files, [
       Validators.required,
-      MaxSizeValidator(this.maxSize * 1024)
+      MaxSizeValidator(this.maxSize * 1024),
+      AcceptValidator(this.accept),
     ]);
   }
 
@@ -50,7 +51,7 @@ export class SkillsManagerComponent implements OnInit, OnDestroy {
 
   exportSkills() {
     this.exportedData = this.skds.exportUserSkillsData().subscribe((data) => {
-      const file = new Blob([JSON.stringify(data, null, 2)], {type : 'application/json'});
+      const file = new Blob([JSON.stringify(data, null, 2)], {type : this.accept});
       this.downloadLink = this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file));
     });
   }
@@ -79,8 +80,12 @@ export class SkillsManagerComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.exportedData.unsubscribe();
-    this.fileData.unsubscribe();
+    if (this.exportedData) {
+      this.exportedData.unsubscribe();
+    }
+    if (this.fileData) {
+      this.fileData.unsubscribe();
+    }
   }
 
 }

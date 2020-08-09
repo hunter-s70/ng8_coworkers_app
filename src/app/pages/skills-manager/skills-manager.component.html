@@ -3,26 +3,33 @@
 
   <mat-tab-group class="skills-manager__tabs">
 
+    <!-- IMPORT TAB -->
     <mat-tab label="Import">
       <section class="skills-manager__tab-content">
+        <p class="skills-manager__import-tip">Only <b>json</b> files are available. Max file size is <b>16,384 KB</b></p>
         <mat-form-field>
           <ngx-mat-file-input [formControl]="fileControl" [multiple]="multiple" [accept]="accept" [color]="color">
           </ngx-mat-file-input>
         </mat-form-field>
-        <div>
+        <div class="skills-manager__import-btn-cont">
           <button mat-raised-button
                   color="accent"
+                  class="skills-manager__import-btn"
+                  [disabled]="fileControl.invalid"
                   (click)="importSkills()">
             Import skills
           </button>
         </div>
       </section>
     </mat-tab>
+    <!-- /IMPORT TAB -->
 
+    <!-- EXPORT TAB -->
     <mat-tab label="Export">
       <section class="skills-manager__tab-content">
         <button mat-raised-button
                 color="accent"
+                class="skills-manager__export-btn"
                 (click)="exportSkills()">
           Export skills
         </button>
@@ -32,6 +39,7 @@
            download>Click to download exported data</a>
       </section>
     </mat-tab>
+    <!-- /EXPORT TAB -->
 
   </mat-tab-group>
 </div>
