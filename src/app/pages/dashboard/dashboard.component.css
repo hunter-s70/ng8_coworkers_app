@@ -18,6 +18,11 @@
   width: 100%;
 }
 
+.dashboard__content {
+  max-width: 1560px;
+  margin: auto;
+}
+
 .dashboard__photo {
   width: 60px;
 }
