@@ -36,6 +36,7 @@ export class SkillsManagerComponent implements OnInit, OnDestroy {
 
   downloadLink: SafeUrl;
   exportedData: Subscription;
+  isProgressActive = false;
 
   get positions(): SelectItem[] {
     return this.skds.positions || [];
@@ -50,7 +51,9 @@ export class SkillsManagerComponent implements OnInit, OnDestroy {
   }
 
   exportSkills() {
+    this.isProgressActive = true;
     this.exportedData = this.skds.exportUserSkillsData().subscribe((data) => {
+      this.isProgressActive = false;
       const file = new Blob([JSON.stringify(data, null, 2)], {type : this.accept});
       this.downloadLink = this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(file));
     });

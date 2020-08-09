@@ -2,10 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+// animations
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // added for MatProgressBarModule
+
 // separate modules
 import { AppRoutingModule } from './routing/app-routing.module';
 import { AppFirebaseModule } from './modules/firebase/app-firebase.module';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './modules/material/app-material.module';
 import { AppInputMaskModule } from './modules/input-mask/app-input-mask.module';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -60,6 +63,7 @@ import { SkillsManagerComponent } from './pages/skills-manager/skills-manager.co
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
+    BrowserAnimationsModule,
     AppFirebaseModule,
     AppMaterialModule,
     MatMomentDateModule,
