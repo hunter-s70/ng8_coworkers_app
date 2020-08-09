@@ -137,7 +137,7 @@ export class EmployeeService {
   private _getFilteredRef(params: EmployeesFiltersInterface, ref): Query {
     let colRef = params.positionId ? ref.where('positionId', '==', params.positionId) : ref;
     colRef = params.skillName ? colRef.where('skillsList', 'array-contains', params.skillName) : colRef;
-    colRef = params.searchBy ? colRef.where(params.searchBy, '==', params.searchText) : colRef;
+    colRef = params.searchBy && params.searchText ? colRef.where(params.searchBy, '==', params.searchText) : colRef;
     return colRef;
   }
 
