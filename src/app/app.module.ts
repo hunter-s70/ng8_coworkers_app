@@ -37,6 +37,7 @@ import { ShowEmployeeComponent } from './pages/show-employee/show-employee.compo
 import { LoggedInRootComponent } from './pages/logged-in-root/logged-in-root.component';
 import { EmployeesFiltersComponent } from './components/employees-filters/employees-filters.component';
 import { SkillsManagerComponent } from './pages/skills-manager/skills-manager.component';
+import { AddProjectComponent } from './pages/add-project/add-project.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { SkillsManagerComponent } from './pages/skills-manager/skills-manager.co
     LoggedInRootComponent,
     EmployeesFiltersComponent,
     SkillsManagerComponent,
+    AddProjectComponent,
   ],
   imports: [
     BrowserModule,
