@@ -1,26 +1,26 @@
 <form [formGroup]="employeeForm"
-      class="employee-form">
+      class="entity-form">
   <mat-slide-toggle formControlName="isActive">Is active employee</mat-slide-toggle>
 
   <app-avatar-upload [avatar]="employee.userPhoto"
-                     class="employee-form__avatar employee-form__field"
+                     class="entity-form__avatar entity-form__field"
                      (updated)="updateAvatar($event)"></app-avatar-upload>
 
-  <mat-form-field class="employee-form__field employee-form__field--half-width">
+  <mat-form-field class="entity-form__field entity-form__field--half-width">
     <input matInput
            formControlName="firstName"
            placeholder="First name"
            required>
   </mat-form-field>
 
-  <mat-form-field class="employee-form__field employee-form__field--half-width">
+  <mat-form-field class="entity-form__field entity-form__field--half-width">
     <input matInput
            formControlName="lastName"
            placeholder="Last name"
            required>
   </mat-form-field>
 
-  <mat-form-field class="employee-form__field employee-form__field--half-width">
+  <mat-form-field class="entity-form__field entity-form__field--half-width">
     <input matInput
            [matDatepicker]="birthday"
            formControlName="birthday"
@@ -30,7 +30,7 @@
     <mat-datepicker #birthday></mat-datepicker>
   </mat-form-field>
 
-  <mat-form-field class="employee-form__field employee-form__field--half-width">
+  <mat-form-field class="entity-form__field entity-form__field--half-width">
     <input matInput
            [matDatepicker]="firstday"
            formControlName="firstday"
@@ -40,14 +40,14 @@
     <mat-datepicker #firstday></mat-datepicker>
   </mat-form-field>
 
-  <mat-form-field class="employee-form__field">
+  <mat-form-field class="entity-form__field">
     <textarea matInput
               formControlName="bio"
               rows="4"
               placeholder="Bio"></textarea>
   </mat-form-field>
 
-  <mat-form-field class="employee-form__field employee-form__field--half-width">
+  <mat-form-field class="entity-form__field entity-form__field--half-width">
     <mat-label>Position</mat-label>
     <mat-select formControlName="positionId"
                 required>
@@ -57,7 +57,7 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field class="employee-form__field employee-form__field--half-width">
+  <mat-form-field class="entity-form__field entity-form__field--half-width">
     <input matInput
            formControlName="email"
            type="email"
@@ -65,7 +65,7 @@
            required>
   </mat-form-field>
 
-  <mat-form-field class="employee-form__field employee-form__field--half-width">
+  <mat-form-field class="entity-form__field entity-form__field--half-width">
     <input matInput
            formControlName="telegramLink"
            [patterns]="telegramNicknamePattern"
@@ -74,7 +74,7 @@
            placeholder="Telegram link">
   </mat-form-field>
 
-  <mat-form-field class="employee-form__field employee-form__field--half-width">
+  <mat-form-field class="entity-form__field entity-form__field--half-width">
     <input matInput
            formControlName="cvLink"
            placeholder="CV link">
@@ -83,9 +83,9 @@
   <app-tags-list [items]="skills"
                  [selectedItems]="employee.skillsList"
                  [placeholderText]="'Add skill...'"
-                 class="employee-form__field"></app-tags-list>
+                 class="entity-form__field"></app-tags-list>
 
-  <div class="employee-form__btn-cont">
+  <div class="entity-form__btn-cont">
     <button mat-raised-button
             color="accent"
             [disabled]="employeeForm.invalid"

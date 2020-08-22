@@ -7,7 +7,10 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-add-project-form',
   templateUrl: './add-project-form.component.html',
-  styleUrls: ['./add-project-form.component.css']
+  styleUrls: [
+    '../../../assets/styles/entity-form.css',
+    './add-project-form.component.css',
+  ]
 })
 export class AddProjectFormComponent implements OnInit {
 
