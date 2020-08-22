@@ -38,6 +38,7 @@ import { LoggedInRootComponent } from './pages/logged-in-root/logged-in-root.com
 import { EmployeesFiltersComponent } from './components/employees-filters/employees-filters.component';
 import { SkillsManagerComponent } from './pages/skills-manager/skills-manager.component';
 import { AddProjectComponent } from './pages/add-project/add-project.component';
+import { AddProjectFormComponent } from './components/add-project-form/add-project-form.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { AddProjectComponent } from './pages/add-project/add-project.component';
     EmployeesFiltersComponent,
     SkillsManagerComponent,
     AddProjectComponent,
+    AddProjectFormComponent,
   ],
   imports: [
     BrowserModule,

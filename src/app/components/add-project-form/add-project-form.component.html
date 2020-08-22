@@ -1,0 +1,70 @@
+<form [formGroup]="projectForm"
+      class="employee-form">
+  <mat-slide-toggle formControlName="isActive">Is active project</mat-slide-toggle>
+
+  <app-avatar-upload [avatar]="project.logo"
+                     class="employee-form__avatar employee-form__field"
+                     (updated)="updateAvatar($event)"></app-avatar-upload>
+
+  <mat-form-field class="employee-form__field employee-form__field--half-width">
+    <input matInput
+           formControlName="name"
+           placeholder="Project name"
+           required>
+  </mat-form-field>
+
+  <mat-form-field class="employee-form__field employee-form__field--half-width">
+    <input matInput
+           formControlName="reference"
+           placeholder="Project reference">
+  </mat-form-field>
+
+  <mat-form-field class="employee-form__field employee-form__field--half-width">
+    <input matInput
+           [matDatepicker]="startTime"
+           formControlName="startTime"
+           placeholder="Start time"
+           required>
+    <mat-datepicker-toggle matSuffix [for]="startTime"></mat-datepicker-toggle>
+    <mat-datepicker #startTime></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field class="employee-form__field employee-form__field--half-width">
+    <input matInput
+           [matDatepicker]="finishTime"
+           formControlName="finishTime"
+           placeholder="Finish time">
+    <mat-datepicker-toggle matSuffix [for]="finishTime"></mat-datepicker-toggle>
+    <mat-datepicker #finishTime></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field class="employee-form__field">
+    <textarea matInput
+              formControlName="description"
+              rows="4"
+              placeholder="Project description"
+              required></textarea>
+  </mat-form-field>
+
+  <!--<mat-form-field class="employee-form__field employee-form__field&#45;&#45;half-width">-->
+    <!--<mat-label>Position</mat-label>-->
+    <!--<mat-select formControlName="positionId"-->
+                <!--required>-->
+      <!--<mat-option *ngFor="let position of positions" [value]="position.id">-->
+        <!--{{ position.value }}-->
+      <!--</mat-option>-->
+    <!--</mat-select>-->
+  <!--</mat-form-field>-->
+
+  <app-tags-list [items]="skills"
+                 [selectedItems]="project.stack"
+                 [placeholderText]="'Add skill...'"
+                 class="employee-form__field"></app-tags-list>
+
+  <div class="employee-form__btn-cont">
+    <button mat-raised-button
+            color="accent"
+            [disabled]="projectForm.invalid"
+            (click)="addNewProject()">{{ saveFormText }}</button>
+  </div>
+</form>

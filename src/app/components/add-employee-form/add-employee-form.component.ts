@@ -21,7 +21,7 @@ export class AddEmployeeFormComponent implements OnInit {
   @Input() submitBtnText: string;
   @Output() saveData = new EventEmitter<object>();
 
-  employeeFrom: FormGroup;
+  employeeForm: FormGroup;
   telegramLinkPrefix = Constants.TELEGRAM_LINK_PREFIX;
   telegramNicknamePattern = { T: { pattern: new RegExp('\[a-z0-9_\]')} };
 
@@ -38,8 +38,8 @@ export class AddEmployeeFormComponent implements OnInit {
   }
 
   addNewEmployee(): void {
-    if (!this.employeeFrom.invalid) {
-      const formData = this.employeeFrom.value;
+    if (!this.employeeForm.invalid) {
+      const formData = this.employeeForm.value;
       const data = this.employee.genEmployeeDataObject(formData);
       this.saveData.emit(data);
     }
@@ -50,7 +50,7 @@ export class AddEmployeeFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.employeeFrom = this.fb.group({
+    this.employeeForm = this.fb.group({
       isActive: [this.employee.isActive],
       firstName: [this.employee.firstName, [Validators.required, Validators.maxLength(20)]],
       lastName: [this.employee.lastName, [Validators.required, Validators.maxLength(20)]],
