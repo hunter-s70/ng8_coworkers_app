@@ -12,6 +12,7 @@ export class AvatarUploadComponent implements OnInit {
   avatarErrors = [];
 
   @Input() avatar: string;
+  @Input() isCompany: boolean;
   @Output() updated = new EventEmitter<string>();
 
   catchUploadedFile(event: Event): void {
