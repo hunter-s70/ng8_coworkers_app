@@ -1,5 +1,6 @@
 .skills-manager__tab-content {
   padding: 20px 0;
+  min-height: 200px;
 }
 
 .skills-manager__import-tip b {
