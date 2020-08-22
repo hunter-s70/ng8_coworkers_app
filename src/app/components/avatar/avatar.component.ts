@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class AvatarComponent implements OnInit {
 
   @Input() avatar: string;
+  @Input() isCompany: boolean;
 
   get backgroundAvatarImage() {
     return this.avatar ? {'background-image': `url(${this.avatar})`} : '';

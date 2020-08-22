@@ -3,6 +3,7 @@
   <mat-slide-toggle formControlName="isActive">Is active project</mat-slide-toggle>
 
   <app-avatar-upload [avatar]="project.logo"
+                     [isCompany]="isCompany"
                      class="entity-form__avatar entity-form__field"
                      (updated)="updateAvatar($event)"></app-avatar-upload>
 

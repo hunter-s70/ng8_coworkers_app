@@ -24,6 +24,7 @@ export class AddProjectFormComponent implements OnInit {
   @Output() saveData = new EventEmitter<object>();
 
   projectForm: FormGroup;
+  isCompany = true;
 
   get saveFormText(): string {
     return this.submitBtnText || 'Add project';
