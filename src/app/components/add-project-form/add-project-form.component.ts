@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Project } from '../../classes/project';
-import { SelectItem } from '../../interfaces/select-item';
 import { SkillsDataService } from '../../services/skills-data.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
@@ -31,10 +30,10 @@ export class AddProjectFormComponent implements OnInit {
     return this.skds.getSkillsValuesList() || [];
   }
 
-  addNewEmployee(): void {
+  addNewProject(): void {
     if (!this.projectForm.invalid) {
       const formData = this.projectForm.value;
-      const data = formData;
+      const data = this.project.genProjectDataObject(formData);
       this.saveData.emit(data);
     }
   }
@@ -47,10 +46,11 @@ export class AddProjectFormComponent implements OnInit {
     this.projectForm = this.fb.group({
       isActive: [this.project.isActive],
       name: [this.project.name, [Validators.required, Validators.maxLength(20)]],
-      reference: [this.project.reference, [Validators.required, Validators.maxLength(20)]],
-      description: [this.project.description, [Validators.required, Validators.maxLength(20)]],
-      startTime: [this.project.startTime, [Validators.required]],
-      finishTime: [this.project.finishTime, [Validators.required]],
+      reference: [this.project.reference, [Validators.maxLength(300)]],
+      description: [this.project.description, [Validators.required, Validators.maxLength(800)]],
+      feedback: [this.project.feedback, [Validators.maxLength(800)]],
+      startTime: [this.project.getMomentDate(this.project.startTime), [Validators.required]],
+      finishTime: [this.project.finishTime],
     });
   }
 

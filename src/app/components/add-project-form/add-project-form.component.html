@@ -46,20 +46,17 @@
               required></textarea>
   </mat-form-field>
 
-  <!--<mat-form-field class="employee-form__field employee-form__field&#45;&#45;half-width">-->
-    <!--<mat-label>Position</mat-label>-->
-    <!--<mat-select formControlName="positionId"-->
-                <!--required>-->
-      <!--<mat-option *ngFor="let position of positions" [value]="position.id">-->
-        <!--{{ position.value }}-->
-      <!--</mat-option>-->
-    <!--</mat-select>-->
-  <!--</mat-form-field>-->
-
   <app-tags-list [items]="skills"
                  [selectedItems]="project.stack"
                  [placeholderText]="'Add skill...'"
                  class="employee-form__field"></app-tags-list>
+
+  <mat-form-field class="employee-form__field">
+    <textarea matInput
+              formControlName="feedback"
+              rows="4"
+              placeholder="Project feedback"></textarea>
+  </mat-form-field>
 
   <div class="employee-form__btn-cont">
     <button mat-raised-button
