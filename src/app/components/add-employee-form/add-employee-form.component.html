@@ -1,4 +1,4 @@
-<form [formGroup]="employeeFrom"
+<form [formGroup]="employeeForm"
       class="employee-form">
   <mat-slide-toggle formControlName="isActive">Is active employee</mat-slide-toggle>
 
@@ -88,7 +88,7 @@
   <div class="employee-form__btn-cont">
     <button mat-raised-button
             color="accent"
-            [disabled]="employeeFrom.invalid"
+            [disabled]="employeeForm.invalid"
             (click)="addNewEmployee()">{{ saveFormText }}</button>
   </div>
 </form>
