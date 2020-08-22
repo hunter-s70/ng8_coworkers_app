@@ -1,0 +1,27 @@
+.entity-form {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.entity-form__field {
+  width: 100%;
+}
+
+.entity-form__field--half-width {
+  width: calc(50% - 10px);
+}
+
+.entity-form__btn-cont {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.entity-form__avatar {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}

@@ -1,25 +1,25 @@
 <form [formGroup]="projectForm"
-      class="employee-form">
+      class="entity-form">
   <mat-slide-toggle formControlName="isActive">Is active project</mat-slide-toggle>
 
   <app-avatar-upload [avatar]="project.logo"
-                     class="employee-form__avatar employee-form__field"
+                     class="entity-form__avatar entity-form__field"
                      (updated)="updateAvatar($event)"></app-avatar-upload>
 
-  <mat-form-field class="employee-form__field employee-form__field--half-width">
+  <mat-form-field class="entity-form__field entity-form__field--half-width">
     <input matInput
            formControlName="name"
            placeholder="Project name"
            required>
   </mat-form-field>
 
-  <mat-form-field class="employee-form__field employee-form__field--half-width">
+  <mat-form-field class="entity-form__field entity-form__field--half-width">
     <input matInput
            formControlName="reference"
            placeholder="Project reference">
   </mat-form-field>
 
-  <mat-form-field class="employee-form__field employee-form__field--half-width">
+  <mat-form-field class="entity-form__field entity-form__field--half-width">
     <input matInput
            [matDatepicker]="startTime"
            formControlName="startTime"
@@ -29,7 +29,7 @@
     <mat-datepicker #startTime></mat-datepicker>
   </mat-form-field>
 
-  <mat-form-field class="employee-form__field employee-form__field--half-width">
+  <mat-form-field class="entity-form__field entity-form__field--half-width">
     <input matInput
            [matDatepicker]="finishTime"
            formControlName="finishTime"
@@ -38,7 +38,7 @@
     <mat-datepicker #finishTime></mat-datepicker>
   </mat-form-field>
 
-  <mat-form-field class="employee-form__field">
+  <mat-form-field class="entity-form__field">
     <textarea matInput
               formControlName="description"
               rows="4"
@@ -49,16 +49,16 @@
   <app-tags-list [items]="skills"
                  [selectedItems]="project.stack"
                  [placeholderText]="'Add skill...'"
-                 class="employee-form__field"></app-tags-list>
+                 class="entity-form__field"></app-tags-list>
 
-  <mat-form-field class="employee-form__field">
+  <mat-form-field class="entity-form__field">
     <textarea matInput
               formControlName="feedback"
               rows="4"
               placeholder="Project feedback"></textarea>
   </mat-form-field>
 
-  <div class="employee-form__btn-cont">
+  <div class="entity-form__btn-cont">
     <button mat-raised-button
             color="accent"
             [disabled]="projectForm.invalid"
