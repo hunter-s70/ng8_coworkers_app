@@ -1,6 +1,15 @@
 <header class="header">
   <a routerLink="/app/home" class="header__logo"></a>
-  <div class="header__content">
+  <nav *ngIf="authService.isLoggedIn"
+       class="header__nav">
+    <a routerLink="/app/home"
+       routerLinkActive="active"
+       class="header__nav-item">Coworkers</a>
+    <a routerLink="/app/projects"
+       routerLinkActive="active"
+       class="header__nav-item">Projects</a>
+  </nav>
+  <div class="header__login-cont">
     <a *ngIf="!authService.isLoggedIn"
        mat-button
        routerLink="/sign-in">Login</a>
