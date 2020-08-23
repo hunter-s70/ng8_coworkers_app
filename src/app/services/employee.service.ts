@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Employee } from '../classes/employee';
 import { EmployeesFiltersInterface } from '../interfaces/employees-filters-interface';
-import { EmployeesRequestsParams } from '../interfaces/employees-requests-params';
+import { GetListRequestsParams } from '../interfaces/get-list-requests-params';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import {
@@ -101,7 +101,7 @@ export class EmployeeService {
   * */
 
   getEmployeesList(
-    params: EmployeesFiltersInterface | EmployeesRequestsParams,
+    params: EmployeesFiltersInterface | GetListRequestsParams,
     isFullList
   ): Observable<any> {
     return this._getFilteredCollectionRef(params, isFullList)
@@ -112,10 +112,10 @@ export class EmployeeService {
   }
 
   private _getFilteredCollectionRef(
-    params: EmployeesFiltersInterface | EmployeesRequestsParams,
+    params: EmployeesFiltersInterface | GetListRequestsParams,
     isFullList: boolean
   ): AngularFirestoreCollection<any> {
-    const limitedParams = params as EmployeesRequestsParams;
+    const limitedParams = params as GetListRequestsParams;
     const filteredParams = params as EmployeesFiltersInterface;
     const isLimitedFiltrationType: boolean = !!limitedParams.limit;
 
@@ -128,7 +128,7 @@ export class EmployeeService {
     });
   }
 
-  private _getLimitedRef(params: EmployeesRequestsParams, ref): Query {
+  private _getLimitedRef(params: GetListRequestsParams, ref): Query {
     let colRef = params.limit ? ref.limit(params.limit) : ref;
     colRef = params.lastVisibleDoc ? colRef.startAfter(params.lastVisibleDoc) : colRef;
     return colRef;

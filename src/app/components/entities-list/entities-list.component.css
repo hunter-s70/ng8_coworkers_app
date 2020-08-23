@@ -1,0 +1,32 @@
+.entities-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 20px auto;
+}
+
+.entities-list__wrapper {
+  display: block;
+  padding: 12px;
+  width: 20%;
+}
+
+@media (max-width: 1024px) {
+  .entities-list__wrapper {
+    width: 25%;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .entities-list__wrapper {
+    width: 50%;
+  }
+}
+
+@media (max-width: 500px) {
+  .entities-list__wrapper {
+    width: 100%;
+    padding: 10px 5px;
+  }
+}

@@ -1,0 +1,32 @@
+<main class="projects">
+  <div *ngIf="authService.isAdmin"
+       class="projects__actions-cont">
+    <a mat-raised-button
+       color="accent"
+       routerLink="/app/project-add"
+       class="projects__add-project-btn">Add project</a>
+    <a mat-raised-button
+       color="accent"
+       routerLink="/app/skills-manager"
+       class="projects__manage-skills-btn">Manage skills</a>
+    <a mat-raised-button
+       color="accent"
+       routerLink="/app/employee-add"
+       class="projects__add-employee-btn">Add employee</a>
+  </div>
+
+  <div class="projects__content">
+
+    <app-entities-list [itemsList]="projectsList"
+                       class="projects__items-list"></app-entities-list>
+
+    <!--<div *ngIf="showLoadMoreBtn"-->
+         <!--class="projects__load-more-cont">-->
+      <!--<button mat-raised-button-->
+              <!--color="accent"-->
+              <!--class="projects__load-more-btn"-->
+              <!--(click)="loadMoreItems()">Load more</button>-->
+    <!--</div>-->
+
+  </div>
+</main>
