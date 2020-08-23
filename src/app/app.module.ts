@@ -39,6 +39,9 @@ import { EmployeesFiltersComponent } from './components/employees-filters/employ
 import { SkillsManagerComponent } from './pages/skills-manager/skills-manager.component';
 import { AddProjectComponent } from './pages/add-project/add-project.component';
 import { AddProjectFormComponent } from './components/add-project-form/add-project-form.component';
+import { ProjectsListComponent } from './pages/projects-list/projects-list.component';
+import { EntitiesListComponent } from './components/entities-list/entities-list.component';
+import { ProjectTileComponent } from './components/project-tile/project-tile.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +65,9 @@ import { AddProjectFormComponent } from './components/add-project-form/add-proje
     SkillsManagerComponent,
     AddProjectComponent,
     AddProjectFormComponent,
+    ProjectsListComponent,
+    EntitiesListComponent,
+    ProjectTileComponent,
   ],
   imports: [
     BrowserModule,
