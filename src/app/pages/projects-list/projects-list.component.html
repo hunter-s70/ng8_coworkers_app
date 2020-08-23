@@ -16,17 +16,18 @@
   </div>
 
   <div class="projects__content">
+    <div class="entities-list projects__list">
+      <app-project-tile *ngFor="let project of projectsList"
+                        [item]="project"
+                        class="entities-list__wrapper"></app-project-tile>
+    </div>
 
-    <app-entities-list [itemsList]="projectsList"
-                       class="projects__items-list"></app-entities-list>
-
-    <!--<div *ngIf="showLoadMoreBtn"-->
-         <!--class="projects__load-more-cont">-->
-      <!--<button mat-raised-button-->
-              <!--color="accent"-->
-              <!--class="projects__load-more-btn"-->
-              <!--(click)="loadMoreItems()">Load more</button>-->
-    <!--</div>-->
-
+    <div *ngIf="showLoadMoreBtn"
+         class="projects__load-more-cont">
+      <button mat-raised-button
+              color="accent"
+              class="projects__load-more-btn"
+              (click)="loadMoreItems()">Load more</button>
+    </div>
   </div>
 </main>

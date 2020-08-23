@@ -1,14 +1,14 @@
-<a [routerLink]="['/app/employee', employee.id]"
-   [ngClass]="{'employee-tile--inactive': !employee.isActive}"
-   class="employee-tile">
-  <app-avatar [avatar]="employee.userPhoto"
-              class="employee-tile__avatar"></app-avatar>
-  <p class="employee-tile__info employee-tile__info--name">{{ employee.fullName }}</p>
-  <p class="employee-tile__info employee-tile__info--position">{{ skds.getPositionNameById(employee.positionId) }}</p>
+<a [routerLink]="['/app/employee', item.id]"
+   [ngClass]="{'entity-tile--inactive': !item.isActive}"
+   class="entity-tile employee-tile">
+  <app-avatar [avatar]="item.userPhoto"
+              class="entity-tile__avatar"></app-avatar>
+  <p class="entity-tile__info entity-tile__info--name">{{ item.fullName }}</p>
+  <p class="entity-tile__info entity-tile__info--position">{{ skds.getPositionNameById(item.positionId) }}</p>
   <div *ngIf="authService.isAdmin"
-       class="employee-tile__btn-cont">
-    <a [routerLink]="['/app/employee-edit', employee.id]"
+       class="entity-tile__btn-cont">
+    <a [routerLink]="['/app/employee-edit', item.id]"
        mat-raised-button
-       class="employee-tile__btn">Edit</a>
+       class="entity-tile__btn">Edit</a>
   </div>
 </a>

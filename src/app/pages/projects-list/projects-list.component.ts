@@ -10,7 +10,10 @@ import { AngularFirestoreDocument } from '@angular/fire/firestore';
 @Component({
   selector: 'app-projects-list',
   templateUrl: './projects-list.component.html',
-  styleUrls: ['./projects-list.component.css']
+  styleUrls: [
+    '../../../assets/styles/entities-list.css',
+    './projects-list.component.css',
+  ]
 })
 export class ProjectsListComponent implements OnInit, OnDestroy {
 
@@ -29,12 +32,12 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
   initFiltersParams: EmployeesFiltersInterface;
 
   get showLoadMoreBtn(): boolean {
-    return !!(this.lastVisibleDoc && !this.hasRouteQuery && this.projectsList.length >= Constants.POJECTS_PER_PAGE);
+    return !!(this.lastVisibleDoc && this.projectsList.length >= Constants.POJECTS_PER_PAGE);
   }
 
-  get hasRouteQuery(): boolean {
-    return !!Object.keys(this.initFiltersParams).length;
-  }
+  // get hasRouteQuery(): boolean {
+  //   return !!Object.keys(this.initFiltersParams).length;
+  // }
 
   applyFilters(filters: EmployeesFiltersInterface): void {
     const queryParams = this._getFiltersQueryParams(filters);
@@ -63,7 +66,6 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
         this.isFullList
       )
       .subscribe(({itemsList, lastVisibleDoc}) => {
-        console.log(itemsList, lastVisibleDoc);
         this.projectsList = [...this.projectsList, ...itemsList];
         this.lastVisibleDoc = lastVisibleDoc;
       });
