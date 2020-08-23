@@ -6,7 +6,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './project-tile.component.html',
   styleUrls: [
     '../../../assets/styles/entity-tile.css',
-    './project-tile.component.css'
+    './project-tile.component.css',
   ]
 })
 export class ProjectTileComponent implements OnInit {

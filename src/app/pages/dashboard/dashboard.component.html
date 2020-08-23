@@ -21,7 +21,6 @@
                          (filtersChanged)="applyFilters($event)"></app-employees-filters>
 
   <div class="dashboard__content">
-
     <!-- Show user data when logged in -->
     <!--<div class="row" *ngIf="authService.userData as user">-->
       <!--<div class="col-md-12">-->
@@ -34,15 +33,18 @@
       <!--</div>-->
     <!--</div>-->
 
-    <app-employees-list [employeesList]="employeesList"
-                        class="dashboard__employees"></app-employees-list>
+    <div class="entities-list dashboard__list">
+      <app-employee-tile *ngFor="let employee of employeesList"
+                         [item]="employee"
+                         class="entities-list__wrapper"></app-employee-tile>
+    </div>
 
     <div *ngIf="showLoadMoreBtn"
          class="dashboard__load-more-cont">
       <button mat-raised-button
               color="accent"
-              class="dashboard__load-more-btn" (click)="loadMoreEmployees()">Load more</button>
+              class="dashboard__load-more-btn"
+              (click)="loadMoreItems()">Load more</button>
     </div>
-
   </div>
 </main>

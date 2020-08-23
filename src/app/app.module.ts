@@ -32,7 +32,6 @@ import { TagsListComponent } from './components/tags-list/tags-list.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { AvatarUploadComponent } from './components/avatar-upload/avatar-upload.component';
 import { EmployeeTileComponent } from './components/employee-tile/employee-tile.component';
-import { EmployeesListComponent } from './components/employees-list/employees-list.component';
 import { ShowEmployeeComponent } from './pages/show-employee/show-employee.component';
 import { LoggedInRootComponent } from './pages/logged-in-root/logged-in-root.component';
 import { EmployeesFiltersComponent } from './components/employees-filters/employees-filters.component';
@@ -40,7 +39,6 @@ import { SkillsManagerComponent } from './pages/skills-manager/skills-manager.co
 import { AddProjectComponent } from './pages/add-project/add-project.component';
 import { AddProjectFormComponent } from './components/add-project-form/add-project-form.component';
 import { ProjectsListComponent } from './pages/projects-list/projects-list.component';
-import { EntitiesListComponent } from './components/entities-list/entities-list.component';
 import { ProjectTileComponent } from './components/project-tile/project-tile.component';
 
 @NgModule({
@@ -58,7 +56,6 @@ import { ProjectTileComponent } from './components/project-tile/project-tile.com
     AvatarUploadComponent,
     EditEmployeeComponent,
     EmployeeTileComponent,
-    EmployeesListComponent,
     ShowEmployeeComponent,
     LoggedInRootComponent,
     EmployeesFiltersComponent,
@@ -66,7 +63,6 @@ import { ProjectTileComponent } from './components/project-tile/project-tile.com
     AddProjectComponent,
     AddProjectFormComponent,
     ProjectsListComponent,
-    EntitiesListComponent,
     ProjectTileComponent,
   ],
   imports: [

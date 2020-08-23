@@ -5,7 +5,10 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-employee-tile',
   templateUrl: './employee-tile.component.html',
-  styleUrls: ['./employee-tile.component.css']
+  styleUrls: [
+    '../../../assets/styles/entity-tile.css',
+    './employee-tile.component.css',
+  ]
 })
 export class EmployeeTileComponent implements OnInit {
 
@@ -14,7 +17,7 @@ export class EmployeeTileComponent implements OnInit {
     public authService: AuthService,
   ) { }
 
-  @Input() employee: any;
+  @Input() item: any;
 
   ngOnInit() {
   }

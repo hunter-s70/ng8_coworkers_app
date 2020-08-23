@@ -10,7 +10,10 @@ import { AngularFirestoreDocument } from '@angular/fire/firestore';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: [
+    '../../../assets/styles/entities-list.css',
+    './dashboard.component.css',
+  ]
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
@@ -55,7 +58,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.router.navigate(['/app/home'], {});
   }
 
-  loadMoreEmployees(): void {
+  loadMoreItems(): void {
     this._checkSubscription();
     this.employeeData = this.ems
       .getEmployeesList(

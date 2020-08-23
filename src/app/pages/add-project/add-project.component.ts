@@ -19,7 +19,7 @@ export class AddProjectComponent implements OnInit {
 
   projectSave(data: object): void {
     this.prs.addProject({data}).then(() => {
-      this.router.navigate(['app/home']);
+      this.router.navigate(['app/projects']);
     });
   }
 
