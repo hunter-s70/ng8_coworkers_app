@@ -1,0 +1,15 @@
+.admin-actions {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 5px 0;
+  margin-bottom: 15px;
+}
+
+.admin-actions__btn {
+  margin-right: 15px;
+}
+
+.admin-actions__btn:last-child {
+  margin-right: 0;
+}

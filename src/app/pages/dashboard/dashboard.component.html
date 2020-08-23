@@ -1,19 +1,5 @@
 <main class="dashboard">
-  <div *ngIf="authService.isAdmin"
-       class="dashboard__actions-cont">
-    <a mat-raised-button
-       color="accent"
-       routerLink="/app/project-add"
-       class="dashboard__add-project-btn">Add project</a>
-    <a mat-raised-button
-       color="accent"
-       routerLink="/app/skills-manager"
-       class="dashboard__manage-skills-btn">Manage skills</a>
-    <a mat-raised-button
-       color="accent"
-       routerLink="/app/employee-add"
-       class="dashboard__add-employee-btn">Add employee</a>
-  </div>
+  <app-admin-actions *ngIf="authService.isAdmin"></app-admin-actions>
 
   <app-employees-filters class="dashboard__filters"
                          [initFilters]="initFiltersParams"
