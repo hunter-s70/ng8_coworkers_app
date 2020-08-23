@@ -1,19 +1,5 @@
 <main class="projects">
-  <div *ngIf="authService.isAdmin"
-       class="projects__actions-cont">
-    <a mat-raised-button
-       color="accent"
-       routerLink="/app/project-add"
-       class="projects__add-project-btn">Add project</a>
-    <a mat-raised-button
-       color="accent"
-       routerLink="/app/skills-manager"
-       class="projects__manage-skills-btn">Manage skills</a>
-    <a mat-raised-button
-       color="accent"
-       routerLink="/app/employee-add"
-       class="projects__add-employee-btn">Add employee</a>
-  </div>
+  <app-admin-actions *ngIf="authService.isAdmin"></app-admin-actions>
 
   <div class="projects__content">
     <div class="entities-list projects__list">

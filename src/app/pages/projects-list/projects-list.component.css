@@ -2,19 +2,6 @@
   position: relative;
 }
 
-.projects__actions-cont {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  padding: 5px 0;
-  margin-bottom: 15px;
-}
-
-.projects__add-project-btn,
-.projects__manage-skills-btn {
-  margin-right: 15px;
-}
-
 .projects__filters {
   width: 100%;
 }

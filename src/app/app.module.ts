@@ -40,6 +40,7 @@ import { AddProjectComponent } from './pages/add-project/add-project.component';
 import { AddProjectFormComponent } from './components/add-project-form/add-project-form.component';
 import { ProjectsListComponent } from './pages/projects-list/projects-list.component';
 import { ProjectTileComponent } from './components/project-tile/project-tile.component';
+import { AdminActionsComponent } from './components/admin-actions/admin-actions.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { ProjectTileComponent } from './components/project-tile/project-tile.com
     AddProjectFormComponent,
     ProjectsListComponent,
     ProjectTileComponent,
+    AdminActionsComponent,
   ],
   imports: [
     BrowserModule,
