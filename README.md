@@ -44,3 +44,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 1. set up admin sdk https://stackoverflow.com/a/59238144
 2. start emulation `firebase emulators:start`
 3. deploy functions `firebase deploy --only functions`
+
+## Firebase project deploy
+`firebase deploy` or `firebase deploy --only hosting`
