@@ -34,9 +34,17 @@ export class ShowProjectComponent implements OnInit, OnDestroy {
       },
       {
         title: 'Project reference',
-        data: this.project.reference ?
-          `<a href="${this.project.reference}" target="_blank">${this.project.reference}</a>` :
-          '',
+        data: this.project.reference
+          ? `<a href="${this.project.reference}" target="_blank">${this.project.reference}</a>`
+          : '',
+      },
+      {
+        title: 'Participants',
+        data: this.project.participants && this.project.participants.length
+          ? this.project.participants
+            .map(item => `<a class="employee-ref" href="/app/employee/${item.id}" target="_blank">${item.value}</a>`)
+            .join('')
+          : '',
       },
       {
         title: 'Stack',
