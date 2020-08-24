@@ -1,6 +1,11 @@
 <main class="projects">
   <app-admin-actions *ngIf="authService.isAdmin"></app-admin-actions>
 
+  <app-projects-filters class="projects__filters"
+                        [initFilters]="initFiltersParams"
+                        (filtersReset)="resetFilters()"
+                        (filtersChanged)="applyFilters($event)"></app-projects-filters>
+
   <div class="projects__content">
     <div class="entities-list projects__list">
       <app-project-tile *ngFor="let project of projectsList"

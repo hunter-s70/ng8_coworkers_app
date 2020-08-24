@@ -3,7 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { ProjectService } from '../../services/project.service';
 import { Constants } from '../../classes/constants';
 import { Subscription } from 'rxjs';
-import { EmployeesFiltersInterface } from '../../interfaces/employees-filters-interface';
+import { ProjectsFiltersInterface } from '../../interfaces/projects-filters-interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestoreDocument } from '@angular/fire/firestore';
 
@@ -29,22 +29,22 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
   isFullList: boolean;
   projectsData: Subscription;
   lastVisibleDoc: AngularFirestoreDocument;
-  initFiltersParams: EmployeesFiltersInterface;
+  initFiltersParams: ProjectsFiltersInterface;
 
   get showLoadMoreBtn(): boolean {
-    return !!(this.lastVisibleDoc && this.projectsList.length >= Constants.POJECTS_PER_PAGE);
+    return !!(this.lastVisibleDoc && !this.hasRouteQuery && this.projectsList.length >= Constants.POJECTS_PER_PAGE);
   }
 
-  // get hasRouteQuery(): boolean {
-  //   return !!Object.keys(this.initFiltersParams).length;
-  // }
+  get hasRouteQuery(): boolean {
+    return !!Object.keys(this.initFiltersParams).length;
+  }
 
-  applyFilters(filters: EmployeesFiltersInterface): void {
+  applyFilters(filters: ProjectsFiltersInterface): void {
     const queryParams = this._getFiltersQueryParams(filters);
-    this.router.navigate(['/app/home'], {queryParams});
+    this.router.navigate(['/app/projects'], {queryParams});
   }
 
-  private _getFiltersQueryParams(filters: EmployeesFiltersInterface) {
+  private _getFiltersQueryParams(filters: ProjectsFiltersInterface) {
     const queryParams = {};
     for (const key of Object.keys(filters)) {
       if (filters[key]) {
@@ -55,7 +55,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
   }
 
   resetFilters(): void {
-    this.router.navigate(['/app/home'], {});
+    this.router.navigate(['/app/projects'], {});
   }
 
   loadMoreItems(): void {
@@ -77,7 +77,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
     }
   }
 
-  private _getAllEmployees(): void {
+  private _getAllProjects(): void {
     this._checkSubscription();
     this.projectsData = this.prs
       .getItemsList(
@@ -90,32 +90,31 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
       });
   }
 
-  // private _getFilteredEmployees(filters: EmployeesFiltersInterface): void {
-  //   this._checkSubscription();
-  //   this.projectsData = this.prs
-  //     .getItemsList(
-  //       filters,
-  //       this.isFullList
-  //     )
-  //     .subscribe(({itemsList}) => {
-  //       this.projectsList = itemsList;
-  //       this.lastVisibleDoc = null;
-  //     });
-  // }
+  private _getFilteredProjects(filters: ProjectsFiltersInterface): void {
+    this._checkSubscription();
+    this.projectsData = this.prs
+      .getItemsList(
+        filters,
+        this.isFullList
+      )
+      .subscribe(({itemsList}) => {
+        this.projectsList = itemsList;
+        this.lastVisibleDoc = null;
+      });
+  }
 
   ngOnInit() {
     this.itemsPerPage = Constants.POJECTS_PER_PAGE;
     this.isFullList = this.authService.isAdmin;
 
-    this._getAllEmployees();
-    // this.route.queryParams.subscribe((params) => {
-    //   this.initFiltersParams = params;
-    //   if (this.hasRouteQuery) {
-    //     this._getFilteredEmployees(this.initFiltersParams);
-    //   } else {
-    //     this._getAllEmployees();
-    //   }
-    // });
+    this.route.queryParams.subscribe((params) => {
+      this.initFiltersParams = params;
+      if (this.hasRouteQuery) {
+        this._getFilteredProjects(this.initFiltersParams);
+      } else {
+        this._getAllProjects();
+      }
+    });
   }
 
   ngOnDestroy() {

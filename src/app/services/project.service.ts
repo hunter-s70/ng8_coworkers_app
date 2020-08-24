@@ -3,6 +3,7 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Project } from '../classes/project';
 import { GetListRequestsParams } from '../interfaces/get-list-requests-params';
+import { ProjectsFiltersInterface } from '../interfaces/projects-filters-interface';
 import {
   AngularFirestore,
   AngularFirestoreDocument,
@@ -95,7 +96,7 @@ export class ProjectService {
   * */
 
   getItemsList(
-    params: GetListRequestsParams,
+    params: ProjectsFiltersInterface | GetListRequestsParams,
     includeActive
   ): Observable<any> {
     return this._getFilteredCollectionRef(params, includeActive)
@@ -106,15 +107,18 @@ export class ProjectService {
   }
 
   private _getFilteredCollectionRef(
-    params: GetListRequestsParams,
+    params: ProjectsFiltersInterface | GetListRequestsParams,
     includeActive: boolean
   ): AngularFirestoreCollection<any> {
     const limitedParams = params as GetListRequestsParams;
-    // const isLimitedFiltrationType: boolean = !!limitedParams.limit;
+    const filteredParams = params as ProjectsFiltersInterface;
+    const isLimitedFiltrationType: boolean = !!limitedParams.limit;
 
     return this.afs.collection('projects', (ref) => {
       let colRef = !includeActive ? ref.where('isActive', '==', true) : ref;
-      colRef = this._getLimitedRef(limitedParams, colRef);
+      colRef = isLimitedFiltrationType
+        ? this._getLimitedRef(limitedParams, colRef)
+        : this._getFilteredRef(filteredParams, colRef);
       return colRef;
     });
   }
@@ -122,6 +126,12 @@ export class ProjectService {
   private _getLimitedRef(params: GetListRequestsParams, ref): Query {
     let colRef = params.limit ? ref.limit(params.limit) : ref;
     colRef = params.lastVisibleDoc ? colRef.startAfter(params.lastVisibleDoc) : colRef;
+    return colRef;
+  }
+
+  private _getFilteredRef(params: ProjectsFiltersInterface, ref): Query {
+    let colRef = params.name ? ref.where('name', '==', params.name) : ref;
+    colRef = params.skillName ? colRef.where('stack', 'array-contains', params.skillName) : colRef;
     return colRef;
   }
 

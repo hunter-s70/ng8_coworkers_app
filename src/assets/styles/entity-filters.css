@@ -1,0 +1,34 @@
+.entity-filters {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.entity-filters__field {
+  margin-right: 15px;
+}
+
+.entity-filters__field--tags {
+  width: 100%;
+}
+
+.entity-filters__actions-btn-cont {
+  display: flex;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+.entity-filters__btn-reset {
+  margin-left: 15px;
+}
+
+@media (max-width: 1024px) {
+  .entity-filters {
+    flex-direction: column;
+  }
+
+  .entity-filters__field {
+    width: 100%;
+    margin: 0;
+  }
+}

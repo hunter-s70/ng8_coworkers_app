@@ -1,12 +1,15 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { SelectItem } from '../../interfaces/select-item';
 import { SkillsDataService } from '../../services/skills-data.service';
-import { EmployeesFilters } from '../../classes/employees-filters';
+import { EmployeesFiltersInterface } from '../../interfaces/employees-filters-interface';
 
 @Component({
   selector: 'app-employees-filters',
   templateUrl: './employees-filters.component.html',
-  styleUrls: ['./employees-filters.component.css']
+  styleUrls: [
+    '../../../assets/styles/entity-filters.css',
+    './employees-filters.component.css'
+  ]
 })
 export class EmployeesFiltersComponent implements OnInit {
 
@@ -14,11 +17,11 @@ export class EmployeesFiltersComponent implements OnInit {
     private skds: SkillsDataService,
   ) { }
 
-  @Input() initFilters: EmployeesFilters;
+  @Input() initFilters: EmployeesFiltersInterface;
   @Output() filtersChanged = new EventEmitter<object>();
   @Output() filtersReset = new EventEmitter<object>();
 
-  filters: EmployeesFilters;
+  filters: EmployeesFiltersInterface;
   searchByList: SelectItem[] = [
     {id: 'email', value: 'Email'},
     {id: 'lastName', value: 'Surname'},
@@ -48,7 +51,7 @@ export class EmployeesFiltersComponent implements OnInit {
   }
 
   clearFilters(): void {
-    this.filters = new EmployeesFilters();
+    this.filters = {};
   }
 
   private _setInitialFilters() {
@@ -59,12 +62,12 @@ export class EmployeesFiltersComponent implements OnInit {
       skillName
     } = this.initFilters;
 
-    this.filters = new EmployeesFilters(
+    this.filters = {
       searchBy,
       searchText,
       positionId,
       skillName
-    );
+    };
   }
 
   ngOnInit() {

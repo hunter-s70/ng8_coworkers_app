@@ -43,6 +43,7 @@ import { ProjectTileComponent } from './components/project-tile/project-tile.com
 import { AdminActionsComponent } from './components/admin-actions/admin-actions.component';
 import { ShowProjectComponent } from './pages/show-project/show-project.component';
 import { EditProjectComponent } from './pages/edit-project/edit-project.component';
+import { ProjectsFiltersComponent } from './components/projects-filters/projects-filters.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { EditProjectComponent } from './pages/edit-project/edit-project.componen
     AdminActionsComponent,
     ShowProjectComponent,
     EditProjectComponent,
+    ProjectsFiltersComponent,
   ],
   imports: [
     BrowserModule,
