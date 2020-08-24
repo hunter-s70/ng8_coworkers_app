@@ -28,6 +28,9 @@ export class SkillsDataService {
     return querySnapshot.docs.map((doc) => doc.data());
   }
 
+  /*
+  * Skills list
+  * */
 
   getSkillsList(): Subscription {
     return this._getCollectionRef('skills')
@@ -42,6 +45,10 @@ export class SkillsDataService {
     return this.skills.map((skill) => skill.value);
   }
 
+  /*
+  * Positions lists
+  * */
+
   getPositionsList(): Subscription {
     return this._getCollectionRef('positions')
       .get()
@@ -55,6 +62,10 @@ export class SkillsDataService {
     const position = this.positions.find((pos) => pos.id === positionId);
     return position ? position.value : '';
   }
+
+  /*
+  * Export and import
+  * */
 
   exportUserSkillsData() {
     return this.http.get('https://us-central1-coworkers-cc0e8.cloudfunctions.net/exportSkills?skills=true&positions=true');
