@@ -1,0 +1,28 @@
+<div class="entity-show page-wrapper show-project">
+
+  <ng-template [ngIf]="project && projectExists">
+    <h1 class="entity-show__title page-title">{{ project.name }}</h1>
+    <div class="entity-show__wrapper">
+      <app-avatar [avatar]="project.logo"
+                  [isCompany]="isCompany"
+                  class="entity-show__avatar"></app-avatar>
+      <div class="entity-show__data-cont">
+        <div *ngFor="let item of dataList"
+             class="entity-show__data">
+          <ng-template [ngIf]="item.data">
+            <p class="entity-show__data-title"
+               [innerHTML]="item.title"></p>
+            <p [ngClass]="{'entity-show__data-content--skills': item.class}"
+               class="entity-show__data-content"
+               [innerHTML]="item.data"></p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="!projectExists">
+    <p class="edit-employee__no-employee-cont">Project does not exist</p>
+  </ng-template>
+
+</div>
