@@ -23,6 +23,8 @@ export class EmployeeService {
 
   employees: Employee[] = [];
 
+  employeesData: Subscription;
+
   /*
   * Add employees functionality
   * */
@@ -103,17 +105,23 @@ export class EmployeeService {
   * */
 
   getEmployeesListForSelect(): Subscription {
+    if (this.employeesData) {
+      return this.employeesData;
+    }
+
     const collectionRef: AngularFirestoreCollection<any> = this.afs
       .collection('employees', (ref) => {
         return ref
           .where('isActive', '==', true);
       });
-    return collectionRef
+
+    this.employeesData = collectionRef
       .get()
       .pipe(map((querySnapshot) => this._getDocsList(querySnapshot)))
       .subscribe((employees) => {
         this.employees = employees || [];
       });
+    return this.employeesData;
   }
 
   private _getDocsList(querySnapshot): any {

@@ -2,7 +2,7 @@
 
   <ng-template [ngIf]="projectExists">
     <h1 class="edit-project__title page-title">Edit project information</h1>
-    <app-add-project-form *ngIf="project"
+    <app-add-project-form *ngIf="project && employeesList.length"
                           [project]="project"
                           [submitBtnText]="'Edit project'"
                           (saveData)="projectUpdate($event)"></app-add-project-form>
