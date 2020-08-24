@@ -42,6 +42,7 @@ import { ProjectsListComponent } from './pages/projects-list/projects-list.compo
 import { ProjectTileComponent } from './components/project-tile/project-tile.component';
 import { AdminActionsComponent } from './components/admin-actions/admin-actions.component';
 import { ShowProjectComponent } from './pages/show-project/show-project.component';
+import { EditProjectComponent } from './pages/edit-project/edit-project.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { ShowProjectComponent } from './pages/show-project/show-project.componen
     ProjectTileComponent,
     AdminActionsComponent,
     ShowProjectComponent,
+    EditProjectComponent,
   ],
   imports: [
     BrowserModule,

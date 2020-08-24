@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Employee } from '../../classes/employee';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Employee } from '../../classes/employee';
 import { EmployeeService } from '../../services/employee.service';
 import { Subscription } from 'rxjs';
 

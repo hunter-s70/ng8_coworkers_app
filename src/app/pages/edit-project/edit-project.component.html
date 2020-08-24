@@ -1,0 +1,15 @@
+<div class="edit-project page-wrapper">
+
+  <ng-template [ngIf]="projectExists">
+    <h1 class="edit-project__title page-title">Edit project information</h1>
+    <app-add-project-form *ngIf="project"
+                          [project]="project"
+                          [submitBtnText]="'Edit project'"
+                          (saveData)="projectUpdate($event)"></app-add-project-form>
+  </ng-template>
+
+  <ng-template [ngIf]="!projectExists">
+    <p class="edit-project__no-project-cont">Project does not exist</p>
+  </ng-template>
+
+</div>

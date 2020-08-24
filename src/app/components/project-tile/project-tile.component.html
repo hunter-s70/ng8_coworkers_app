@@ -7,7 +7,7 @@
   <p class="entity-tile__info entity-tile__info--name">{{ item.name }}</p>
   <div *ngIf="authService.isAdmin"
        class="entity-tile__btn-cont">
-    <a [routerLink]="['/app/employee-edit', item.id]"
+    <a [routerLink]="['/app/project-edit', item.id]"
        mat-raised-button
        class="entity-tile__btn">Edit</a>
   </div>

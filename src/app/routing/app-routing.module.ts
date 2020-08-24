@@ -12,6 +12,7 @@ import { SkillsManagerComponent } from '../pages/skills-manager/skills-manager.c
 import { AddProjectComponent } from '../pages/add-project/add-project.component';
 import { ProjectsListComponent } from '../pages/projects-list/projects-list.component';
 import { ShowProjectComponent } from '../pages/show-project/show-project.component';
+import { EditProjectComponent } from '../pages/edit-project/edit-project.component';
 
 import { AuthGuard } from '../guards/auth.guard';
 import { AdminGuard } from '../guards/admin.guard';
@@ -29,8 +30,9 @@ const routes: Routes = [
       { path: 'employee-add', component: AddEmployeeComponent, canActivate: [AdminGuard]},
       { path: 'employee-edit/:uid', component: EditEmployeeComponent, canActivate: [AdminGuard]},
       { path: 'employee/:uid', component: ShowEmployeeComponent},
-      { path: 'project-add', component: AddProjectComponent, canActivate: [AdminGuard]},
       { path: 'projects', component: ProjectsListComponent},
+      { path: 'project-add', component: AddProjectComponent, canActivate: [AdminGuard]},
+      { path: 'project-edit/:id', component: EditProjectComponent, canActivate: [AdminGuard]},
       { path: 'project/:id', component: ShowProjectComponent},
       { path: 'skills-manager', component: SkillsManagerComponent, canActivate: [AdminGuard]},
     ]},
