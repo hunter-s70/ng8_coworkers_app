@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Project } from '../../classes/project';
 import { SkillsDataService } from '../../services/skills-data.service';
 import { EmployeeService } from '../../services/employee.service';
-import { Employee } from '../../classes/employee';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { SelectItem } from '../../interfaces/select-item';
 
 
 @Component({
@@ -27,6 +27,7 @@ export class AddProjectFormComponent implements OnInit {
   @Output() saveData = new EventEmitter<object>();
 
   projectForm: FormGroup;
+  employeesSelectList: SelectItem[];
   isCompany = true;
 
   get saveFormText(): string {
@@ -37,14 +38,14 @@ export class AddProjectFormComponent implements OnInit {
     return this.skds.getSkillsValuesList() || [];
   }
 
-  get employees(): Employee[] {
-    return this.ems.getEmployeesSelectorList() || [];
-  }
-
   addNewProject(): void {
     if (!this.projectForm.invalid) {
       const formData = this.projectForm.value;
-      const data = this.project.genProjectDataObject(formData);
+      const data: any = this.project.genProjectDataObject(formData);
+      data.participants = this.project.genParticipantsData({
+        selectedParticipants: data.participants,
+        selectData: this.employeesSelectList
+      });
       this.saveData.emit(data);
     }
   }
@@ -53,13 +54,23 @@ export class AddProjectFormComponent implements OnInit {
     this.project.logo = logo;
   }
 
+  genEmployeesList(): SelectItem[] {
+    const employees: any[] = this.ems.getEmployeesSelectorList() || [];
+    return employees.map((employee) => {
+      return {id: employee.id, value: `${employee.firstName} ${employee.lastName}`};
+    });
+  }
+
   ngOnInit() {
+    this.employeesSelectList = this.genEmployeesList();
+
     this.projectForm = this.fb.group({
       isActive: [this.project.isActive],
       name: [this.project.name, [Validators.required, Validators.maxLength(20)]],
       reference: [this.project.reference, [Validators.maxLength(300)]],
       description: [this.project.description, [Validators.required, Validators.maxLength(800)]],
       feedback: [this.project.feedback, [Validators.maxLength(800)]],
+      participants: [this.project.getParticipantsIds()],
       startTime: [this.project.getMomentDate(this.project.startTime), [Validators.required]],
       finishTime: [this.project.finishTime],
     });

@@ -124,7 +124,7 @@ export class EmployeeService {
     });
   }
 
-  getEmployeesSelectorList() {
+  getEmployeesSelectorList(): Employee[] {
     return this.employees;
   }
 
