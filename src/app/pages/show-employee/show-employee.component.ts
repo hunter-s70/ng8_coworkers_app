@@ -53,15 +53,15 @@ export class ShowEmployeeComponent implements OnInit, OnDestroy {
       },
       {
         title: 'Telegram link',
-        data: this.employee.telegramLink ?
-          `<a href="${this.telegramFullLink}" target="_blank">${this.telegramFullLink}</a>` :
-          '',
+        data: this.employee.telegramLink
+          ? `<a href="${this.telegramFullLink}" target="_blank">${this.telegramFullLink}</a>`
+          : '',
       },
       {
         title: 'CV link',
-        data: this.employee.cvLink ?
-          `<a href="${this.employee.cvLink}" target="_blank">${this.employee.cvLink}</a>` :
-          '',
+        data: this.employee.cvLink
+          ? `<a href="${this.employee.cvLink}" target="_blank">${this.employee.cvLink}</a>`
+          : '',
       },
       {
         title: 'Birthday',
