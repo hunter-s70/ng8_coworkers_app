@@ -47,6 +47,15 @@
               required></textarea>
   </mat-form-field>
 
+  <mat-form-field class="entity-form__field">
+    <mat-label>Participants (only active)</mat-label>
+    <mat-select formControlName="participants" multiple>
+      <mat-option *ngFor="let employee of employeesSelectList" [value]="employee.id">
+        {{ employee.value }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <app-tags-list [items]="skills"
                  [selectedItems]="project.stack"
                  [placeholderText]="'Add skill...'"
