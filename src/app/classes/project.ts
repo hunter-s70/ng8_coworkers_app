@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { SelectItem } from '../interfaces/select-item';
 
 export class Project {
   constructor(
@@ -8,7 +9,7 @@ export class Project {
     public logo: string = '',
     public reference: string = '',
     public stack: string[] = [],
-    public participants: string[] = [],
+    public participants: SelectItem[] = [],
     public isActive: boolean = true,
     public createdAt: string = moment().toString(),
     public updatedAt: moment.Moment = moment(),
@@ -28,5 +29,21 @@ export class Project {
 
   getMomentDate(timestamp) {
     return moment(timestamp);
+  }
+
+  getParticipantsIds(): Array<string> {
+    return this.participants && this.participants.length
+      ? this.participants.map((item) => item.id)
+      : [];
+  }
+
+  genParticipantsData({selectedParticipants, selectData}): SelectItem[] {
+    const participants = [];
+    selectData.forEach((item) => {
+      if (selectedParticipants.includes(item.id)) {
+        participants.push(item);
+      }
+    });
+    return participants;
   }
 }
