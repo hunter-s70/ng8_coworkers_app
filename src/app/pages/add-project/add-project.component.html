@@ -1,6 +1,6 @@
 <div class="add-project page-wrapper">
   <h1 class="add-project__title page-title">Add project information</h1>
-  <app-add-project-form *ngIf="project"
+  <app-add-project-form *ngIf="project && employeesList.length"
                         [project]="project"
                         (saveData)="projectSave($event)"></app-add-project-form>
 </div>

@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Project } from '../../classes/project';
 import { ProjectService } from '../../services/project.service';
-import { Subscription } from 'rxjs';
+import { EmployeeService } from '../../services/employee.service';
 
 @Component({
   selector: 'app-edit-project',
@@ -12,6 +13,7 @@ import { Subscription } from 'rxjs';
 export class EditProjectComponent implements OnInit, OnDestroy {
 
   constructor(
+    private ems: EmployeeService,
     private prs: ProjectService,
     private route: ActivatedRoute,
     public router: Router,
@@ -21,6 +23,11 @@ export class EditProjectComponent implements OnInit, OnDestroy {
   projectId: string;
   projectData: Subscription;
   projectExists = true;
+  employeesData: Subscription;
+
+  get employeesList() {
+    return this.ems.getEmployeesSelectorList() || [];
+  }
 
   private _getProjectData(projectId: string): void {
     this.projectData = this.prs.getProjectById(projectId).subscribe((data) => {
@@ -37,6 +44,7 @@ export class EditProjectComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.employeesData = this.ems.getEmployeesListForSelect();
     this.route.params.subscribe(params => {
       this.projectId = params.id;
       this._getProjectData(params.id);
@@ -45,6 +53,7 @@ export class EditProjectComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.projectData.unsubscribe();
+    this.employeesData.unsubscribe();
   }
 
 }
