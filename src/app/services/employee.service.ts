@@ -3,7 +3,7 @@ import { Employee } from '../classes/employee';
 import { EmployeesFiltersInterface } from '../interfaces/employees-filters-interface';
 import { GetListRequestsParams } from '../interfaces/get-list-requests-params';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import {
   AngularFirestore,
   AngularFirestoreDocument,
@@ -20,6 +20,8 @@ export class EmployeeService {
   constructor(
     private afs: AngularFirestore,
   ) { }
+
+  employees: Employee[] = [];
 
   /*
   * Add employees functionality
@@ -97,14 +99,44 @@ export class EmployeeService {
   }
 
   /*
+  * Employees selection functionality
+  * */
+
+  getEmployeesListForSelect(): Subscription {
+    const collectionRef: AngularFirestoreCollection<any> = this.afs
+      .collection('employees', (ref) => {
+        return ref
+          .where('isActive', '==', true);
+      });
+    return collectionRef
+      .get()
+      .pipe(map((querySnapshot) => this._getDocsList(querySnapshot)))
+      .subscribe((employees) => {
+        this.employees = employees || [];
+      });
+  }
+
+  private _getDocsList(querySnapshot): any {
+    return querySnapshot.docs.map((doc) => {
+      const employeeData = doc.data();
+      employeeData.id = doc.id;
+      return employeeData;
+    });
+  }
+
+  getEmployeesSelectorList() {
+    return this.employees;
+  }
+
+  /*
   * Employees lists functionality
   * */
 
   getEmployeesList(
     params: EmployeesFiltersInterface | GetListRequestsParams,
-    isFullList
+    includeActive
   ): Observable<any> {
-    return this._getFilteredCollectionRef(params, isFullList)
+    return this._getFilteredCollectionRef(params, includeActive)
       .get()
       .pipe(map((querySnapshot) => {
         return this._getEmployeesList(querySnapshot);
@@ -113,14 +145,14 @@ export class EmployeeService {
 
   private _getFilteredCollectionRef(
     params: EmployeesFiltersInterface | GetListRequestsParams,
-    isFullList: boolean
+    includeActive: boolean
   ): AngularFirestoreCollection<any> {
     const limitedParams = params as GetListRequestsParams;
     const filteredParams = params as EmployeesFiltersInterface;
     const isLimitedFiltrationType: boolean = !!limitedParams.limit;
 
     return this.afs.collection('employees', (ref) => {
-      let colRef = !isFullList ? ref.where('isActive', '==', true) : ref;
+      let colRef = !includeActive ? ref.where('isActive', '==', true) : ref;
       colRef = isLimitedFiltrationType
         ? this._getLimitedRef(limitedParams, colRef)
         : this._getFilteredRef(filteredParams, colRef);

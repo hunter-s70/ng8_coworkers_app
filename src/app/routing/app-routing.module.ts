@@ -31,7 +31,7 @@ const routes: Routes = [
       { path: 'employee-edit/:uid', component: EditEmployeeComponent, canActivate: [AdminGuard]},
       { path: 'employee/:uid', component: ShowEmployeeComponent},
       { path: 'projects', component: ProjectsListComponent},
-      { path: 'project-add', component: AddProjectComponent, canActivate: [AdminGuard]},
+      { path: 'project-add', component: AddProjectComponent},
       { path: 'project-edit/:id', component: EditProjectComponent, canActivate: [AdminGuard]},
       { path: 'project/:id', component: ShowProjectComponent},
       { path: 'skills-manager', component: SkillsManagerComponent, canActivate: [AdminGuard]},

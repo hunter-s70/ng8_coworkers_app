@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Project } from '../../classes/project';
 import { SkillsDataService } from '../../services/skills-data.service';
+import { EmployeeService } from '../../services/employee.service';
+import { Employee } from '../../classes/employee';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 
@@ -16,6 +18,7 @@ export class AddProjectFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private ems: EmployeeService,
     private skds: SkillsDataService,
   ) { }
 
@@ -32,6 +35,10 @@ export class AddProjectFormComponent implements OnInit {
 
   get skills(): string[] {
     return this.skds.getSkillsValuesList() || [];
+  }
+
+  get employees(): Employee[] {
+    return this.ems.getEmployeesSelectorList() || [];
   }
 
   addNewProject(): void {
