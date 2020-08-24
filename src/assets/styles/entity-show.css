@@ -1,0 +1,34 @@
+.entity-show__wrapper {
+  display: flex;
+}
+
+.entity-show__avatar {
+  display: block;
+  flex-shrink: 0;
+  width: 160px;
+  height: 160px;
+}
+
+.entity-show__data-cont {
+  width: 100%;
+  padding: 0 40px;
+}
+
+.entity-show__data {
+  padding: 0 10px;
+  margin-bottom: 15px;
+}
+
+.entity-show__data-title {
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.entity-show__data-content {
+  font-size: 14px;
+}
+
+.entity-show__data-content--skills {
+  margin-left: -4px;
+}

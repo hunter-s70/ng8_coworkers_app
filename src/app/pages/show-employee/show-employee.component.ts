@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Employee } from '../../classes/employee';
 import { ActivatedRoute, Router, Params } from '@angular/router';
+import { Employee } from '../../classes/employee';
 import { EmployeeService } from '../../services/employee.service';
 import { SkillsDataService } from '../../services/skills-data.service';
 import { Constants } from '../../classes/constants';
@@ -9,7 +9,10 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-show-employee',
   templateUrl: './show-employee.component.html',
-  styleUrls: ['./show-employee.component.css']
+  styleUrls: [
+    '../../../assets/styles/entity-show.css',
+    './show-employee.component.css'
+  ]
 })
 export class ShowEmployeeComponent implements OnInit, OnDestroy {
 

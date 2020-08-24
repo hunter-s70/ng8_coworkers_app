@@ -11,6 +11,7 @@ import { ShowEmployeeComponent } from '../pages/show-employee/show-employee.comp
 import { SkillsManagerComponent } from '../pages/skills-manager/skills-manager.component';
 import { AddProjectComponent } from '../pages/add-project/add-project.component';
 import { ProjectsListComponent } from '../pages/projects-list/projects-list.component';
+import { ShowProjectComponent } from '../pages/show-project/show-project.component';
 
 import { AuthGuard } from '../guards/auth.guard';
 import { AdminGuard } from '../guards/admin.guard';
@@ -28,8 +29,9 @@ const routes: Routes = [
       { path: 'employee-add', component: AddEmployeeComponent, canActivate: [AdminGuard]},
       { path: 'employee-edit/:uid', component: EditEmployeeComponent, canActivate: [AdminGuard]},
       { path: 'employee/:uid', component: ShowEmployeeComponent},
-      { path: 'project-add', component: AddProjectComponent},
+      { path: 'project-add', component: AddProjectComponent, canActivate: [AdminGuard]},
       { path: 'projects', component: ProjectsListComponent},
+      { path: 'project/:id', component: ShowProjectComponent},
       { path: 'skills-manager', component: SkillsManagerComponent, canActivate: [AdminGuard]},
     ]},
   { path: '**', component: NotFoundComponent }

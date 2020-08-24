@@ -41,6 +41,7 @@ import { AddProjectFormComponent } from './components/add-project-form/add-proje
 import { ProjectsListComponent } from './pages/projects-list/projects-list.component';
 import { ProjectTileComponent } from './components/project-tile/project-tile.component';
 import { AdminActionsComponent } from './components/admin-actions/admin-actions.component';
+import { ShowProjectComponent } from './pages/show-project/show-project.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { AdminActionsComponent } from './components/admin-actions/admin-actions.
     ProjectsListComponent,
     ProjectTileComponent,
     AdminActionsComponent,
+    ShowProjectComponent,
   ],
   imports: [
     BrowserModule,

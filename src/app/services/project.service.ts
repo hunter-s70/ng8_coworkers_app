@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { Project } from '../classes/project';
 import { GetListRequestsParams } from '../interfaces/get-list-requests-params';
 import {
   AngularFirestore,
+  AngularFirestoreDocument,
   AngularFirestoreCollection,
   Query
 } from '@angular/fire/firestore';
@@ -27,6 +29,65 @@ export class ProjectService {
 
   private _getCollectionRef(): AngularFirestoreCollection<any> {
     return this.afs.collection('projects');
+  }
+
+  /*
+  * Update employees functionality
+  * */
+
+  updateProject({projectId, data}): Promise<any> {
+    return this._getDocumentRef(projectId).set(data, { merge: true });
+  }
+
+  private _getDocumentRef(docId: string): AngularFirestoreDocument<any> {
+    return this.afs.doc(`projects/${docId}`);
+  }
+
+  getProjectById(projectId: string): Observable<any> {
+    return this._getDocumentRef(projectId)
+      .get()
+      .pipe(map((doc) => {
+          return {
+            exists: doc.exists,
+            project: this._createInstanceFromData(doc)
+          };
+        })
+      );
+  }
+
+  private _createInstanceFromData(doc): Project {
+    let instance = null;
+    if (doc.exists) {
+      const {
+        name,
+        description,
+        feedback,
+        logo,
+        reference,
+        stack,
+        participants,
+        isActive,
+        createdAt,
+        updatedAt,
+        startTime,
+        finishTime,
+      } = doc.data();
+
+      instance = new Project(
+        name,
+        description,
+        feedback,
+        logo,
+        reference,
+        stack,
+        participants,
+        isActive,
+        createdAt,
+        updatedAt,
+        startTime,
+        finishTime);
+    }
+    return instance;
   }
 
   /*
