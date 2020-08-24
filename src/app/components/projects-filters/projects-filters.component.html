@@ -1,28 +1,8 @@
-<div class="entity-filters employee-filters">
-  <mat-form-field class="entity-filters__field">
-    <mat-label>Search by</mat-label>
-    <mat-select [(ngModel)]="filters.searchBy">
-      <mat-option *ngFor="let item of searchByList" [value]="item.id">
-        {{ item.value }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-
+<div class="entity-filters project-filters">
   <mat-form-field class="entity-filters__field">
     <input matInput
-           [(ngModel)]="filters.searchText"
-           [placeholder]="searchByPlaceholderText">
-  </mat-form-field>
-
-
-  <mat-form-field class="entity-filters__field">
-    <mat-label>Position</mat-label>
-    <mat-select [(ngModel)]="filters.positionId">
-      <mat-option *ngFor="let position of positions" [value]="position.id">
-        {{ position.value }}
-      </mat-option>
-    </mat-select>
+           [(ngModel)]="filters.name"
+           [placeholder]="'Project name'">
   </mat-form-field>
 
 
