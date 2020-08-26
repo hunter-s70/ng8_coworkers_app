@@ -62,7 +62,7 @@ export class ShowProjectComponent implements OnInit, OnDestroy {
           : 'in progress',
       },
       {
-        title: 'Feedback',
+        title: 'Tech feedback',
         data: this.project.feedback,
       },
     ];
