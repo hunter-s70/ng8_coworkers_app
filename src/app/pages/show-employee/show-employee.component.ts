@@ -72,7 +72,7 @@ export class ShowEmployeeComponent implements OnInit, OnDestroy {
         data: this.employee.getFirstday().format('DD/MM/YYYY'),
       },
       {
-        title: 'Biography',
+        title: 'Interests',
         data: this.employee.bio,
       },
     ];
