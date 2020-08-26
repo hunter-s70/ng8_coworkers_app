@@ -13,3 +13,13 @@
 .admin-actions__btn:last-child {
   margin-right: 0;
 }
+
+@media (max-width: 768px) {
+  .admin-actions {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .admin-actions__btn {
+    margin-bottom: 10px;
+  }
+}
