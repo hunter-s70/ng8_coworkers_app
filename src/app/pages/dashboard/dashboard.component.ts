@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { SkillsDataService } from '../../services/skills-data.service';
 import { AuthService } from '../../services/auth.service';
 import { EmployeeService } from '../../services/employee.service';
 import { Constants } from '../../classes/constants';
-import { Subscription } from 'rxjs';
 import { EmployeesFiltersInterface } from '../../interfaces/employees-filters-interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -18,6 +19,7 @@ import { AngularFirestoreDocument } from '@angular/fire/firestore';
 export class DashboardComponent implements OnInit, OnDestroy {
 
   constructor(
+    private skds: SkillsDataService,
     private ems: EmployeeService,
     public authService: AuthService,
     private route: ActivatedRoute,
@@ -30,6 +32,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   employeeData: Subscription;
   lastVisibleDoc: AngularFirestoreDocument;
   initFiltersParams: EmployeesFiltersInterface;
+
+  skillsData: Subscription;
+  positionsData: Subscription;
 
   get showLoadMoreBtn(): boolean {
     return !!(this.lastVisibleDoc && !this.hasRouteQuery && this.employeesList.length >= Constants.EMPLOYEES_PER_PAGE);
@@ -104,6 +109,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.skillsData = this.skds.getSkillsList();
+    this.positionsData = this.skds.getPositionsList();
     this.employeesPerPage = Constants.EMPLOYEES_PER_PAGE;
     this.isFullList = this.authService.isAdmin;
 
@@ -119,6 +126,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this._checkSubscription();
+    this.skillsData.unsubscribe();
+    this.positionsData.unsubscribe();
   }
 
 }

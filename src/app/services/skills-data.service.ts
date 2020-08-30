@@ -18,6 +18,9 @@ export class SkillsDataService {
   skills: SelectItem[] = [];
   positions: SelectItem[] = [];
 
+  skillsData: Subscription;
+  positionsData: Subscription;
+
   private _getCollectionRef(collectionName): AngularFirestoreCollection<any> {
     return this.afs.collection(collectionName, (ref) => {
       return ref.orderBy('value');
@@ -33,12 +36,16 @@ export class SkillsDataService {
   * */
 
   getSkillsList(): Subscription {
-    return this._getCollectionRef('skills')
+    if (this.skillsData) {
+      return this.skillsData;
+    }
+    this.skillsData = this._getCollectionRef('skills')
       .get()
       .pipe(map((querySnapshot) => this._getDocsList(querySnapshot)))
       .subscribe((skills) => {
         this.skills = skills || [];
       });
+    return this.skillsData;
   }
 
   getSkillsValuesList() {
@@ -50,12 +57,16 @@ export class SkillsDataService {
   * */
 
   getPositionsList(): Subscription {
-    return this._getCollectionRef('positions')
+    if (this.positionsData) {
+      return this.positionsData;
+    }
+    this.positionsData = this._getCollectionRef('positions')
       .get()
       .pipe(map((querySnapshot) => this._getDocsList(querySnapshot)))
       .subscribe((positions) => {
         this.positions = positions || [];
       });
+    return this.positionsData;
   }
 
   getPositionNameById(positionId: string): string {

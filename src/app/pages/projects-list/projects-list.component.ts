@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { SkillsDataService } from '../../services/skills-data.service';
 import { AuthService } from '../../services/auth.service';
 import { ProjectService } from '../../services/project.service';
 import { Constants } from '../../classes/constants';
-import { Subscription } from 'rxjs';
 import { ProjectsFiltersInterface } from '../../interfaces/projects-filters-interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -18,6 +19,7 @@ import { AngularFirestoreDocument } from '@angular/fire/firestore';
 export class ProjectsListComponent implements OnInit, OnDestroy {
 
   constructor(
+    private skds: SkillsDataService,
     private prs: ProjectService,
     public authService: AuthService,
     private route: ActivatedRoute,
@@ -30,6 +32,8 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
   projectsData: Subscription;
   lastVisibleDoc: AngularFirestoreDocument;
   initFiltersParams: ProjectsFiltersInterface;
+
+  skillsData: Subscription;
 
   get showLoadMoreBtn(): boolean {
     return !!(this.lastVisibleDoc && !this.hasRouteQuery && this.projectsList.length >= Constants.POJECTS_PER_PAGE);
@@ -104,6 +108,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.skillsData = this.skds.getSkillsList();
     this.itemsPerPage = Constants.POJECTS_PER_PAGE;
     this.isFullList = this.authService.isAdmin;
 
@@ -119,6 +124,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this._checkSubscription();
+    this.skillsData.unsubscribe();
   }
 
 
