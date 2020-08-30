@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Employee } from '../../classes/employee';
 import { EmployeeService } from '../../services/employee.service';
 import { SkillsDataService } from '../../services/skills-data.service';
 import { Constants } from '../../classes/constants';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-show-employee',
@@ -27,6 +27,8 @@ export class ShowEmployeeComponent implements OnInit, OnDestroy {
   employeeId: string;
   employeeData: Subscription;
   employeeExists = true;
+
+  positionsData: Subscription;
 
   get fullName(): string {
     return this.employee ? `${this.employee.firstName} ${this.employee.lastName}` : '';
@@ -86,6 +88,7 @@ export class ShowEmployeeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.positionsData = this.skds.getPositionsList();
     this.route.params.subscribe((params: Params) => {
       this.employeeId = params.uid;
       this._getEmployeeData(params.uid);
@@ -94,6 +97,7 @@ export class ShowEmployeeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.employeeData.unsubscribe();
+    this.positionsData.unsubscribe();
   }
 
 }
