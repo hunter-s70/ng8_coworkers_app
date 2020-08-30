@@ -17,6 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 // services
 import { AuthService } from './services/auth.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 // components
 import { AppComponent } from './app.component';
@@ -85,6 +87,7 @@ import { ProjectsFiltersComponent } from './components/projects-filters/projects
     ReactiveFormsModule,
     AppInputMaskModule,
     HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
